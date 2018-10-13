@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TorunekoTool
 {
-    public class DataTableMaker
+    public class ItemDataTableMaker
     {
-        private DataTable Table;
+        public DataTable Table { get; private set; }
         private List<DtoItem> ItemList;
 
-        public DataTable GetDataTable(int type) {
+        public void CreateDataTable(int type) {
             Table = new DataTable();
 
 
@@ -33,7 +33,7 @@ namespace TorunekoTool
             try
             {
                 dao.OpenConnection();
-                ItemList = dao.GetItemList(
+                ItemList = dao.GetUnidentifiedItemList(
                     new DtoItem()
                     {
                         TypeNumber = type
@@ -50,13 +50,11 @@ namespace TorunekoTool
                     Table.Rows.Add(
                         new object[]
                         {
-                            item.UnidentifiedName, item.Name, item.MoneyToBuy, item.MoneyToSell, item.Note
+                            item.UnidentifiedName, item.ItemName, item.MoneyToBuy, item.MoneyToSell, item.Note
                         });
                     
                 }
             }
-
-            return Table;
         }
 
         public void SetItem(DtoItem item)
