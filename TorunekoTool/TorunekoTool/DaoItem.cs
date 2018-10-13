@@ -42,6 +42,92 @@ namespace TorunekoTool
             return itemList;
         }
 
+        public List<DtoType> GetTypeList()
+        {
+            string sql = "SELECT TYPENUMBER, TYPENAME FROM TYPEMASTER";
+
+            var typeList = new List<DtoType>();
+
+            using (var cmd = new OdbcCommand(sql, con))
+            {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var retType = new DtoType()
+                        {
+                            TypeNumber = int.Parse(reader[0].ToString()),
+                            TypeName = reader[1].ToString()
+                        };
+
+                        typeList.Add(retType);
+                    }
+                }
+            }
+
+            return typeList;
+        }
+
+        public List<DtoItem> GetItemList(DtoItem item)
+        {
+            object[,] strArr = { 
+                { nameof(item.ItemName), item.ItemName },
+                { nameof(item.TypeNumber), item.TypeNumber },
+                { nameof(item.MoneyToBuy), item.MoneyToBuy },
+                { nameof(item.MoneyToSell), item.MoneyToSell },
+                { nameof(item.Note), item.Note },
+            };
+
+            string sql = "SELECT ITEMNAME, TYPENUMBER, MONEYTOBUY, MONEYTOSELL, NOTE " +
+                "FROM ITEMMASTER ";
+
+            string strWhere = "";
+            for (int i=0; i<strArr.GetUpperBound(0); i++) {
+                if (strArr[i,1] != null) {
+                    if (strWhere == "") {
+                        strWhere += "WHERE ";
+                    }
+                    else
+                    {
+                        strWhere += "AND ";
+                    }
+
+                    strWhere += $"{strArr[i,0]} = {strArr[i, 1]} ";
+
+                }
+            }
+
+            sql += strWhere;
+
+            Console.WriteLine(sql);
+
+            var itemList = new List<DtoItem>();
+
+            using (var cmd = new OdbcCommand(sql, con))
+            {
+            
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var retItem = new DtoItem()
+                        {
+                            // ITEMNAME, TYPENUMBER, MONEYTOBUY, MONEYTOSELL, NOTE
+                            ItemName = reader[0].ToString(),
+                            TypeNumber = int.Parse(reader[1].ToString()),
+                            MoneyToBuy = int.Parse(reader[2].ToString()),
+                            MoneyToSell = int.Parse(reader[3].ToString()),
+                            Note = reader[4].ToString()
+                        };
+
+                        itemList.Add(retItem);
+                    }
+                }
+            }
+
+            return itemList;
+        }
+
         public List<DtoItem> SearchItem(DtoItem item) {
             string sql = "SELECT ITEMNAME, ITEMMASTER.TYPENUMBER, MONEYTOBUY, MONEYTOSELL, NOTE " +
                 "FROM ITEMMASTER JOIN TYPEMASTER ON ITEMMASTER.TYPENUMBER = TYPEMASTER.TYPENUMBER " +
