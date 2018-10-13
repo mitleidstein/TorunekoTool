@@ -60,7 +60,7 @@ namespace TorunekoTool
                         //0: ITEMNAME, 1: ITEMMASTER.TYPENUMBER, 2: MONEYTOBUY, 3: MONEYTOSELL, 4: NOTE
                         var retItem = new DtoItem()
                         {
-                            Name = reader[0].ToString(),
+                            ItemName = reader[0].ToString(),
                             TypeNumber = int.Parse(reader[1].ToString()),
                             MoneyToBuy = int.Parse(reader[2].ToString()),
                             MoneyToSell = int.Parse(reader[3].ToString()),
