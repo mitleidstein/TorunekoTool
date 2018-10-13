@@ -14,11 +14,12 @@ namespace TorunekoTool
 
         public void OpenConnection() {
             con = new OdbcConnection();
-            con.ConnectionString = "DSN=PostgreSQL35W;SERVER=localhost;DATABASE=postgres;UID=postgres;PWD=postgresql;PORT=5432;";
+            con.ConnectionString = 
+                "DSN=PostgreSQL35W;SERVER=localhost;DATABASE=postgres;UID=postgres;PWD=postgresql;PORT=5432;";
             con.Open();
         }
 
-        public List<DtoItem> GetItemList(DtoItem item) {
+        public List<DtoItem> GetUnidentifiedItemList(DtoItem item) {
             string sql = "SELECT UNIDENTIFIEDNAME " +
                 "FROM UNIDENTIFIEDNAMEMASTER " +
                 $"WHERE TYPENUMBER = {item.TypeNumber}";
