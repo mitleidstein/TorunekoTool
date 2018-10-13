@@ -44,12 +44,16 @@
             // 
             // DgvMain
             // 
+            this.DgvMain.AllowUserToAddRows = false;
+            this.DgvMain.AllowUserToDeleteRows = false;
+            this.DgvMain.AllowUserToResizeRows = false;
             this.DgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvMain.Location = new System.Drawing.Point(12, 169);
+            this.DgvMain.Location = new System.Drawing.Point(21, 115);
             this.DgvMain.Name = "DgvMain";
-            this.DgvMain.RowTemplate.Height = 27;
-            this.DgvMain.Size = new System.Drawing.Size(458, 260);
+            this.DgvMain.RowTemplate.Height = 24;
+            this.DgvMain.Size = new System.Drawing.Size(971, 526);
             this.DgvMain.TabIndex = 0;
+            this.DgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvMain_CellContentClick);
             // 
             // LblType
             // 
@@ -63,7 +67,7 @@
             // LblName
             // 
             this.LblName.AutoSize = true;
-            this.LblName.Location = new System.Drawing.Point(547, 29);
+            this.LblName.Location = new System.Drawing.Point(1080, 29);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(100, 18);
             this.LblName.TabIndex = 2;
@@ -72,7 +76,7 @@
             // LblMoneyToBuy
             // 
             this.LblMoneyToBuy.AutoSize = true;
-            this.LblMoneyToBuy.Location = new System.Drawing.Point(547, 179);
+            this.LblMoneyToBuy.Location = new System.Drawing.Point(1106, 384);
             this.LblMoneyToBuy.Name = "LblMoneyToBuy";
             this.LblMoneyToBuy.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToBuy.TabIndex = 3;
@@ -81,7 +85,7 @@
             // LblMoneyToSell
             // 
             this.LblMoneyToSell.AutoSize = true;
-            this.LblMoneyToSell.Location = new System.Drawing.Point(547, 270);
+            this.LblMoneyToSell.Location = new System.Drawing.Point(1106, 475);
             this.LblMoneyToSell.Name = "LblMoneyToSell";
             this.LblMoneyToSell.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToSell.TabIndex = 4;
@@ -91,9 +95,9 @@
             // 
             this.LsbItem.FormattingEnabled = true;
             this.LsbItem.ItemHeight = 18;
-            this.LsbItem.Location = new System.Drawing.Point(550, 61);
+            this.LsbItem.Location = new System.Drawing.Point(1072, 61);
             this.LsbItem.Name = "LsbItem";
-            this.LsbItem.Size = new System.Drawing.Size(120, 94);
+            this.LsbItem.Size = new System.Drawing.Size(188, 274);
             this.LsbItem.TabIndex = 5;
             // 
             // comboBox1
@@ -106,23 +110,24 @@
             // 
             // BtnSet
             // 
-            this.BtnSet.Location = new System.Drawing.Point(572, 370);
+            this.BtnSet.Location = new System.Drawing.Point(1131, 575);
             this.BtnSet.Name = "BtnSet";
             this.BtnSet.Size = new System.Drawing.Size(75, 32);
             this.BtnSet.TabIndex = 9;
             this.BtnSet.Text = "決定";
             this.BtnSet.UseVisualStyleBackColor = true;
+            this.BtnSet.Click += new System.EventHandler(this.BtnSet_Click);
             // 
             // TxbMoneyToBuy
             // 
-            this.TxbMoneyToBuy.Location = new System.Drawing.Point(550, 215);
+            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1109, 420);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
             // 
             // TxbMoneyToSell
             // 
-            this.TxbMoneyToSell.Location = new System.Drawing.Point(550, 305);
+            this.TxbMoneyToSell.Location = new System.Drawing.Point(1109, 510);
             this.TxbMoneyToSell.Name = "TxbMoneyToSell";
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
@@ -135,12 +140,13 @@
             this.BtnSwitch.TabIndex = 12;
             this.BtnSwitch.Text = "切替";
             this.BtnSwitch.UseVisualStyleBackColor = true;
+            this.BtnSwitch.Click += new System.EventHandler(this.BtnSwitch_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1272, 670);
             this.Controls.Add(this.BtnSwitch);
             this.Controls.Add(this.TxbMoneyToSell);
             this.Controls.Add(this.TxbMoneyToBuy);
@@ -154,6 +160,7 @@
             this.Controls.Add(this.DgvMain);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
