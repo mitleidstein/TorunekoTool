@@ -10,8 +10,9 @@ namespace TorunekoTool
     {
         public string Name{ get; set; }
         public string UnidentifiedName { get; set; }
-        public int MoneyToBuy { get; set; }
-        public int MoneyToSell { get; set; }
+        public int? MoneyToBuy { get; set; }
+        public int? MoneyToSell { get; set; }
         public int TypeNumber { get; set; }
+        public string Note { get; set; }
     }
 }
