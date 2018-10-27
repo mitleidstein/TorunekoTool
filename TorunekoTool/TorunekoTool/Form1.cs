@@ -40,6 +40,11 @@ namespace TorunekoTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             ComboMaker = new TypeDataTableMaker();
             comboBox1.DataSource = ComboMaker.GetDataTable();
             comboBox1.DisplayMember = "TYPENAME";
@@ -213,12 +218,11 @@ namespace TorunekoTool
                     TableMakerList[index].SetItem(item);
                     ItemList[index].Remove(item);
 
+                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[1];
                     SetListBox();
                     return;
                 }
             }
-            
-
         }
 
         private void BtnSet_Click(object sender, EventArgs e)
@@ -227,6 +231,10 @@ namespace TorunekoTool
 
             int rowIndex = DgvMain.CurrentRow.Index;
             string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
+
+            //すでに値が入ってる場合
+            string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
+            ResetItemName(index, rowIndex, itemName);
 
             var item = new DtoItem()
             {
@@ -246,7 +254,7 @@ namespace TorunekoTool
 
             TableMakerList[index].SetItem(item);
 
-            //DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+            DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[1];
 
             TxbMoneyToBuy.Text = "";
             TxbMoneyToSell.Text = "";
@@ -258,6 +266,11 @@ namespace TorunekoTool
         private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
         {
             SetListBox(DgvMain.CurrentRow);
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

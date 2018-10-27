@@ -40,6 +40,7 @@
             this.TxbMoneyToSell = new System.Windows.Forms.TextBox();
             this.BtnReset = new System.Windows.Forms.Button();
             this.BtnDecide = new System.Windows.Forms.Button();
+            this.BtnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,11 +160,22 @@
             this.BtnDecide.UseVisualStyleBackColor = true;
             this.BtnDecide.Click += new System.EventHandler(this.BtnDecide_Click);
             // 
+            // BtnNew
+            // 
+            this.BtnNew.Location = new System.Drawing.Point(563, 48);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(120, 30);
+            this.BtnNew.TabIndex = 14;
+            this.BtnNew.Text = "新しい冒険";
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1272, 670);
+            this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.BtnDecide);
             this.Controls.Add(this.BtnReset);
             this.Controls.Add(this.TxbMoneyToSell);
@@ -199,6 +211,7 @@
         private System.Windows.Forms.TextBox TxbMoneyToSell;
         private System.Windows.Forms.Button BtnReset;
         private System.Windows.Forms.Button BtnDecide;
+        private System.Windows.Forms.Button BtnNew;
     }
 }
 
