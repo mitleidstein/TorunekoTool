@@ -97,6 +97,38 @@ namespace TorunekoTool
                 item.MoneyToSell = int.Parse(TxbMoneyToSell.Text);
             }
 
+            TableMakerList[index].SetItem(item);
+
+            DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+
+            TxbMoneyToBuy.Text = "";
+            TxbMoneyToSell.Text = "";
+            return;
+        }
+
+        private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (DgvMain.CurrentRow == null) {
+                return;
+            }
+
+            var item = new DtoItem();
+
+            if (int.TryParse(comboBox1.SelectedValue.ToString(), out int typeNumber))
+            {
+                item.TypeNumber = typeNumber;
+            }
+
+            if (int.TryParse(DgvMain.CurrentRow.Cells[2].Value.ToString(), out int moneyToBuy))
+            {
+                item.MoneyToBuy = moneyToBuy;
+            }
+
+            if (int.TryParse(DgvMain.CurrentRow.Cells[3].Value.ToString(), out int moneyToSell))
+            {
+                item.MoneyToSell = moneyToSell;
+            }
+
             SetListBox(item);
         }
     }
