@@ -166,6 +166,14 @@ namespace TorunekoTool
                     int rowIndex = DgvMain.CurrentRow.Index;
                     string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
 
+                    //すでに値が入っていた場合
+                    string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
+                    if (itemName != "")
+                    {
+                        ItemList[index].Add(TableMakerList[index].SearchItem(itemName));
+                        TableMakerList[index].ResetItem(itemName);
+                    }
+
                     item.UnidentifiedName = unidentifiedName;
                     TableMakerList[index].SetItem(item);
                     ItemList[index].Remove(item);

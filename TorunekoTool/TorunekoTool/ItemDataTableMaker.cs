@@ -80,5 +80,40 @@ namespace TorunekoTool
             }
         }
 
+        public DtoItem SearchItem(string itemName)
+        {
+            foreach (DtoItem item in ItemList)
+            {
+                if (item.ItemName == itemName)
+                {
+                    DtoItem retItem = new DtoItem()
+                    {
+                        ItemName = item.ItemName,
+                        MoneyToBuy = item.MoneyToBuy,
+                        MoneyToSell = item.MoneyToSell,
+                        Note = item.Note
+                    };
+                    return retItem;
+                }
+            }
+            return null;
+        }
+
+        public bool ResetItem(string itemName)
+        {
+            foreach (DtoItem item in ItemList)
+            {
+                if (item.ItemName == itemName)
+                {
+                    item.ItemName = null;
+                    item.MoneyToBuy = null;
+                    item.MoneyToSell = null;
+                    item.Note = null;
+                    SetDataTable();
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
