@@ -44,22 +44,40 @@ namespace TorunekoTool
                 dao.CloseConnection();
             }
 
+            SetDataTable();
+        }
+
+        private void SetDataTable() {
+            Table.Clear();
+
             if (ItemList != null && ItemList.Count != 0)
             {
-                foreach (var item in ItemList) {
+                foreach (var item in ItemList)
+                {
                     Table.Rows.Add(
                         new object[]
                         {
                             item.UnidentifiedName, item.ItemName, item.MoneyToBuy, item.MoneyToSell, item.Note
                         });
-                    
+
                 }
             }
         }
 
         public void SetItem(DtoItem item)
         {
+            foreach (var unidetifiedItem in ItemList)
+            {
+                if (item.UnidentifiedName == unidetifiedItem.UnidentifiedName) {
+                    unidetifiedItem.ItemName = item.ItemName;
+                    unidetifiedItem.MoneyToBuy = item.MoneyToBuy;
+                    unidetifiedItem.MoneyToSell = item.MoneyToSell;
+                    unidetifiedItem.Note = item.Note;
 
+                    SetDataTable();
+                    return;
+                }
+            }
         }
 
     }

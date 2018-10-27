@@ -38,7 +38,8 @@
             this.BtnSet = new System.Windows.Forms.Button();
             this.TxbMoneyToBuy = new System.Windows.Forms.TextBox();
             this.TxbMoneyToSell = new System.Windows.Forms.TextBox();
-            this.BtnSwitch = new System.Windows.Forms.Button();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.BtnDecide = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,10 +51,12 @@
             this.DgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvMain.Location = new System.Drawing.Point(21, 115);
             this.DgvMain.Name = "DgvMain";
+            this.DgvMain.ReadOnly = true;
             this.DgvMain.RowTemplate.Height = 24;
             this.DgvMain.Size = new System.Drawing.Size(971, 526);
             this.DgvMain.TabIndex = 0;
             this.DgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvMain_CellContentClick);
+            this.DgvMain.CurrentCellChanged += new System.EventHandler(this.DgvMain_CurrentCellChanged);
             // 
             // LblType
             // 
@@ -76,7 +79,7 @@
             // LblMoneyToBuy
             // 
             this.LblMoneyToBuy.AutoSize = true;
-            this.LblMoneyToBuy.Location = new System.Drawing.Point(1106, 384);
+            this.LblMoneyToBuy.Location = new System.Drawing.Point(1080, 430);
             this.LblMoneyToBuy.Name = "LblMoneyToBuy";
             this.LblMoneyToBuy.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToBuy.TabIndex = 3;
@@ -85,7 +88,7 @@
             // LblMoneyToSell
             // 
             this.LblMoneyToSell.AutoSize = true;
-            this.LblMoneyToSell.Location = new System.Drawing.Point(1106, 475);
+            this.LblMoneyToSell.Location = new System.Drawing.Point(1080, 521);
             this.LblMoneyToSell.Name = "LblMoneyToSell";
             this.LblMoneyToSell.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToSell.TabIndex = 4;
@@ -107,10 +110,11 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 26);
             this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // BtnSet
             // 
-            this.BtnSet.Location = new System.Drawing.Point(1131, 575);
+            this.BtnSet.Location = new System.Drawing.Point(1121, 606);
             this.BtnSet.Name = "BtnSet";
             this.BtnSet.Size = new System.Drawing.Size(75, 32);
             this.BtnSet.TabIndex = 9;
@@ -120,34 +124,47 @@
             // 
             // TxbMoneyToBuy
             // 
-            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1109, 420);
+            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1083, 466);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
+            this.TxbMoneyToBuy.TextChanged += new System.EventHandler(this.TxbMoneyToBuy_TextChanged);
             // 
             // TxbMoneyToSell
             // 
-            this.TxbMoneyToSell.Location = new System.Drawing.Point(1109, 510);
+            this.TxbMoneyToSell.Location = new System.Drawing.Point(1083, 556);
             this.TxbMoneyToSell.Name = "TxbMoneyToSell";
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
+            this.TxbMoneyToSell.TextChanged += new System.EventHandler(this.TxbMoneyToSell_TextChanged);
             // 
-            // BtnSwitch
+            // BtnReset
             // 
-            this.BtnSwitch.Location = new System.Drawing.Point(278, 49);
-            this.BtnSwitch.Name = "BtnSwitch";
-            this.BtnSwitch.Size = new System.Drawing.Size(76, 31);
-            this.BtnSwitch.TabIndex = 12;
-            this.BtnSwitch.Text = "切替";
-            this.BtnSwitch.UseVisualStyleBackColor = true;
-            this.BtnSwitch.Click += new System.EventHandler(this.BtnSwitch_Click);
+            this.BtnReset.Location = new System.Drawing.Point(1072, 353);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(76, 31);
+            this.BtnReset.TabIndex = 12;
+            this.BtnReset.Text = "リセット";
+            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnSwitch_Click);
+            // 
+            // BtnDecide
+            // 
+            this.BtnDecide.Location = new System.Drawing.Point(1165, 353);
+            this.BtnDecide.Name = "BtnDecide";
+            this.BtnDecide.Size = new System.Drawing.Size(76, 31);
+            this.BtnDecide.TabIndex = 13;
+            this.BtnDecide.Text = "決定";
+            this.BtnDecide.UseVisualStyleBackColor = true;
+            this.BtnDecide.Click += new System.EventHandler(this.BtnDecide_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1272, 670);
-            this.Controls.Add(this.BtnSwitch);
+            this.Controls.Add(this.BtnDecide);
+            this.Controls.Add(this.BtnReset);
             this.Controls.Add(this.TxbMoneyToSell);
             this.Controls.Add(this.TxbMoneyToBuy);
             this.Controls.Add(this.BtnSet);
@@ -179,7 +196,8 @@
         private System.Windows.Forms.Button BtnSet;
         private System.Windows.Forms.TextBox TxbMoneyToBuy;
         private System.Windows.Forms.TextBox TxbMoneyToSell;
-        private System.Windows.Forms.Button BtnSwitch;
+        private System.Windows.Forms.Button BtnReset;
+        private System.Windows.Forms.Button BtnDecide;
     }
 }
 

@@ -14,7 +14,7 @@ namespace TorunekoTool
     {
         private List<ItemDataTableMaker> TableMakerList;
         private TypeDataTableMaker ComboMaker;
-        private List<DtoItem> ItemList;
+        private List<List<DtoItem>> ItemList;
 
         public Form1()
         {
@@ -32,38 +32,74 @@ namespace TorunekoTool
             comboBox1.DataSource = ComboMaker.GetDataTable();
             comboBox1.DisplayMember = "TYPENAME";
             comboBox1.ValueMember = "TYPENUMBER";
+            comboBox1.SelectedIndex = 0;
 
             TableMakerList = new List<ItemDataTableMaker>();
 
-            for (int i=0; i<comboBox1.Items.Count; i++) {
+            for (int i = 0; i < comboBox1.Items.Count; i++)
+            {
                 var table = new ItemDataTableMaker();
                 table.CreateDataTable(i);
                 TableMakerList.Add(table);
             }
 
+            GetItemList();
             SetDgv();
         }
 
         private void SetDgv()
         {
-            int index = int.Parse(comboBox1.SelectedValue.ToString());
-            DgvMain.DataSource = TableMakerList[index].Table;
-            
-            SetListBox(index);
+            try
+            {
+                int index = int.Parse(comboBox1.SelectedValue.ToString());
+                SetListBox(index);
+                DgvMain.DataSource = TableMakerList[index].Table;
+            }
+            catch
+            {
+            }
         }
 
-        private void SetListBox(DtoItem item) {
-            LsbItem.Items.Clear();
+        private void GetItemList()
+        {
+            ItemList = new List<List<DtoItem>>();
 
             var dao = new DaoItem();
             dao.OpenConnection();
-            ItemList = dao.GetItemList(item);
 
-            foreach (var retItem in ItemList) {
-                LsbItem.Items.Add(retItem.ItemName);
+            for (int i = 0; i < comboBox1.Items.Count; i++)
+            {
+
+                ItemList.Add(dao.GetItemList(new DtoItem()
+                {
+                    TypeNumber = i
+                }));
             }
 
             dao.CloseConnection();
+        }
+
+        private void SetListBox(DtoItem item)
+        {
+            LsbItem.Items.Clear();
+
+            int index = int.Parse(comboBox1.SelectedValue.ToString());
+
+            foreach (var retItem in ItemList[index])
+            {
+                if (item.MoneyToBuy != null && item.MoneyToBuy != retItem.MoneyToBuy)
+                {
+                    continue;
+                }
+
+                if (item.MoneyToSell != null && item.MoneyToSell != retItem.MoneyToSell)
+                {
+                    continue;
+                }
+
+                LsbItem.Items.Add(retItem.ItemName);
+            }
+
         }
 
         private void SetListBox(int type)
@@ -71,23 +107,91 @@ namespace TorunekoTool
             SetListBox(new DtoItem { TypeNumber = type });
         }
 
+        private void SetListBox()
+        {
+            var item = new DtoItem()
+            {
+                TypeNumber = int.Parse(comboBox1.SelectedValue.ToString())
+            };
+
+
+            if (TxbMoneyToBuy.Text != "")
+            {
+                item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
+            }
+
+
+            if (TxbMoneyToSell.Text != "")
+            {
+                item.MoneyToSell = int.Parse(TxbMoneyToSell.Text);
+            }
+
+            SetListBox(item);
+        }
+
         private void DgvMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == -1 || e.RowIndex == -1) {
+
+        }
+
+        private void TxbMoneyToBuy_TextChanged(object sender, EventArgs e)
+        {
+            SetListBox();
+        }
+
+        private void TxbMoneyToSell_TextChanged(object sender, EventArgs e)
+        {
+            SetListBox();
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SetDgv();
+        }
+
+        private void BtnDecide_Click(object sender, EventArgs e)
+        {
+            if (LsbItem.SelectedItem == null)
+            {
                 return;
             }
 
+
+            int index = int.Parse(comboBox1.SelectedValue.ToString());
+
+            foreach (var item in ItemList[index])
+            {
+                if (item.ItemName == LsbItem.SelectedItem.ToString())
+                {
+                    int rowIndex = DgvMain.CurrentRow.Index;
+                    string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
+
+                    item.UnidentifiedName = unidentifiedName;
+                    TableMakerList[index].SetItem(item);
+                    ItemList[index].Remove(item);
+
+                    SetListBox();
+                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+                    return;
+                }
+            }
 
         }
 
         private void BtnSet_Click(object sender, EventArgs e)
         {
-            var item = new DtoItem() {
-                TypeNumber = int.Parse(comboBox1.SelectedValue.ToString())
+            int index = int.Parse(comboBox1.SelectedValue.ToString());
+
+            int rowIndex = DgvMain.CurrentRow.Index;
+            string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
+
+            var item = new DtoItem()
+            {
+                UnidentifiedName = unidentifiedName
             };
 
-
-            if (TxbMoneyToBuy.Text != "") {
+            if (TxbMoneyToBuy.Text != "")
+            {
                 item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
             }
 
