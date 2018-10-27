@@ -146,7 +146,7 @@
             this.BtnReset.TabIndex = 12;
             this.BtnReset.Text = "リセット";
             this.BtnReset.UseVisualStyleBackColor = true;
-            this.BtnReset.Click += new System.EventHandler(this.BtnSwitch_Click);
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // BtnDecide
             // 

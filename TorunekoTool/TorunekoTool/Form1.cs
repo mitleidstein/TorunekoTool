@@ -21,9 +21,21 @@ namespace TorunekoTool
             InitializeComponent();
         }
 
-        private void BtnSwitch_Click(object sender, EventArgs e)
+        private void BtnReset_Click(object sender, EventArgs e)
         {
-            SetDgv();
+            int index = int.Parse(comboBox1.SelectedValue.ToString());
+            int rowIndex = DgvMain.CurrentRow.Index;
+            string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
+            ResetItemName(index, rowIndex, itemName);
+        }
+
+        private void ResetItemName(int typeNum, int rowIndex, string itemName)
+        {
+            if (itemName != "")
+            {
+                ItemList[typeNum].Add(TableMakerList[typeNum].SearchItem(itemName));
+                TableMakerList[typeNum].ResetItem(itemName);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -166,13 +178,9 @@ namespace TorunekoTool
                     int rowIndex = DgvMain.CurrentRow.Index;
                     string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
 
-                    //すでに値が入っていた場合
+                    //すでに値が入ってる場合
                     string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
-                    if (itemName != "")
-                    {
-                        ItemList[index].Add(TableMakerList[index].SearchItem(itemName));
-                        TableMakerList[index].ResetItem(itemName);
-                    }
+                    ResetItemName(index, rowIndex, itemName);
 
                     item.UnidentifiedName = unidentifiedName;
                     TableMakerList[index].SetItem(item);
