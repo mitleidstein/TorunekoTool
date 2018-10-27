@@ -119,6 +119,33 @@ namespace TorunekoTool
             SetListBox(new DtoItem { TypeNumber = type });
         }
 
+        private void SetListBox(DataGridViewRow row)
+        {
+            if (row == null)
+            {
+                return;
+            }
+
+            var item = new DtoItem();
+
+            if (int.TryParse(comboBox1.SelectedValue.ToString(), out int typeNumber))
+            {
+                item.TypeNumber = typeNumber;
+            }
+
+            if (int.TryParse(row.Cells[2].Value.ToString(), out int moneyToBuy))
+            {
+                item.MoneyToBuy = moneyToBuy;
+            }
+
+            if (int.TryParse(row.Cells[3].Value.ToString(), out int moneyToSell))
+            {
+                item.MoneyToSell = moneyToSell;
+            }
+
+            SetListBox(item);
+        }
+
         private void SetListBox()
         {
             var item = new DtoItem()
@@ -187,10 +214,10 @@ namespace TorunekoTool
                     ItemList[index].Remove(item);
 
                     SetListBox();
-                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
                     return;
                 }
             }
+            
 
         }
 
@@ -219,37 +246,18 @@ namespace TorunekoTool
 
             TableMakerList[index].SetItem(item);
 
-            DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+            //DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
 
             TxbMoneyToBuy.Text = "";
             TxbMoneyToSell.Text = "";
+
+            SetListBox(DgvMain.CurrentRow);
             return;
         }
 
         private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
         {
-            if (DgvMain.CurrentRow == null) {
-                return;
-            }
-
-            var item = new DtoItem();
-
-            if (int.TryParse(comboBox1.SelectedValue.ToString(), out int typeNumber))
-            {
-                item.TypeNumber = typeNumber;
-            }
-
-            if (int.TryParse(DgvMain.CurrentRow.Cells[2].Value.ToString(), out int moneyToBuy))
-            {
-                item.MoneyToBuy = moneyToBuy;
-            }
-
-            if (int.TryParse(DgvMain.CurrentRow.Cells[3].Value.ToString(), out int moneyToSell))
-            {
-                item.MoneyToSell = moneyToSell;
-            }
-
-            SetListBox(item);
+            SetListBox(DgvMain.CurrentRow);
         }
     }
 }
