@@ -267,6 +267,20 @@ namespace TorunekoTool
 
         private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
         {
+            DataGridViewRow row = DgvMain.CurrentRow;
+            if (row == null)
+            {
+                return;
+            }
+            if (row.Cells[2] != null) {
+                TxbMoneyToBuy.Text = row.Cells[2].Value.ToString();
+            }
+
+            if (row.Cells[3] != null)
+            {
+                TxbMoneyToSell.Text = row.Cells[3].Value.ToString();
+            }
+
             SetListBox(DgvMain.CurrentRow);
         }
 
