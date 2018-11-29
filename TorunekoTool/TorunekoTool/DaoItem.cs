@@ -19,19 +19,20 @@ namespace TorunekoTool
             con.Open();
         }
 
-        public List<DtoItem> GetUnidentifiedItemList(DtoItem item) {
+        public List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item) {
             string sql = "SELECT UNIDENTIFIEDNAME " +
                 "FROM UNIDENTIFIEDNAMEMASTER " +
                 $"WHERE TYPENUMBER = {item.TypeNumber}";
 
-            var itemList = new List<DtoItem>();
+            var itemList = new List<UnidentifiedItem>();
 
             using (var cmd = new OdbcCommand(sql, con)) {
                 using (var reader = cmd.ExecuteReader()) {
                     while (reader.Read()) {
-                        var retItem = new DtoItem()
+                        var retItem = new UnidentifiedItem()
                         {
-                            UnidentifiedName = reader[0].ToString()
+                            UnidentifiedName = reader[0].ToString(),
+                            TypeNumber  = item.TypeNumber
                         };
 
                         itemList.Add(retItem);

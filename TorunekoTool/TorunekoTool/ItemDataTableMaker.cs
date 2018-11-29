@@ -10,6 +10,7 @@ namespace TorunekoTool
     public class ItemDataTableMaker
     {
         public DataTable Table { get; private set; }
+        private List<UnidentifiedItem> UnidentifiedList;
         private List<DtoItem> ItemList;
 
         public void CreateDataTable(int type) {
@@ -33,7 +34,12 @@ namespace TorunekoTool
             try
             {
                 dao.OpenConnection();
-                ItemList = dao.GetUnidentifiedItemList(
+                UnidentifiedList = dao.GetUnidentifiedItemList(
+                    new DtoItem()
+                    {
+                        TypeNumber = type
+                    });
+                ItemList = dao.GetItemList(
                     new DtoItem()
                     {
                         TypeNumber = type
@@ -50,29 +56,36 @@ namespace TorunekoTool
         private void SetDataTable() {
             Table.Clear();
 
-            if (ItemList != null && ItemList.Count != 0)
+            if (UnidentifiedList != null && UnidentifiedList.Count != 0)
             {
-                foreach (var item in ItemList)
+                foreach (var item in UnidentifiedList)
                 {
+                    string itemName = "";
+                    string note = "";
+                    if (item.Item != null)
+                    {
+                        itemName = item.Item.ItemName;
+                        note = item.Item.Note;
+                    }
+
                     Table.Rows.Add(
                         new object[]
                         {
-                            item.UnidentifiedName, item.ItemName, item.MoneyToBuy, item.MoneyToSell, item.Note
+                            item.UnidentifiedName, itemName, item.MoneyToBuy, item.MoneyToSell, note
                         });
 
                 }
             }
         }
 
-        public void SetItem(DtoItem item)
+        public void SetItem(UnidentifiedItem argItem)
         {
-            foreach (var unidetifiedItem in ItemList)
+            foreach (var unidentifiedItem in UnidentifiedList)
             {
-                if (item.UnidentifiedName == unidetifiedItem.UnidentifiedName) {
-                    unidetifiedItem.ItemName = item.ItemName;
-                    unidetifiedItem.MoneyToBuy = item.MoneyToBuy;
-                    unidetifiedItem.MoneyToSell = item.MoneyToSell;
-                    unidetifiedItem.Note = item.Note;
+                if (argItem.UnidentifiedName == unidentifiedItem.UnidentifiedName) {
+                    unidentifiedItem.Item = argItem.Item;
+                    unidentifiedItem.MoneyToBuy = argItem.MoneyToBuy;
+                    unidentifiedItem.MoneyToSell = argItem.MoneyToSell;
 
                     SetDataTable();
                     return;

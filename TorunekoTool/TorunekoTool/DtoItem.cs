@@ -8,8 +8,7 @@ namespace TorunekoTool
 {
     public class DtoItem
     {
-        public string ItemName{ get; set; }
-        public string UnidentifiedName { get; set; }
+        public string ItemName { get; set; }
         public int? MoneyToBuy { get; set; }
         public int? MoneyToSell { get; set; }
         public int TypeNumber { get; set; }

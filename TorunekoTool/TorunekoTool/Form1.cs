@@ -214,8 +214,10 @@ namespace TorunekoTool
                     string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
                     ResetItemName(index, rowIndex, itemName);
 
-                    item.UnidentifiedName = unidentifiedName;
-                    TableMakerList[index].SetItem(item);
+                    UnidentifiedItem unItem = new UnidentifiedItem();
+                    unItem.UnidentifiedName = unidentifiedName;
+                    unItem.Item = item;
+                    TableMakerList[index].SetItem(unItem);
                     ItemList[index].Remove(item);
 
                     DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[1];
@@ -236,7 +238,7 @@ namespace TorunekoTool
             string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
             ResetItemName(index, rowIndex, itemName);
 
-            var item = new DtoItem()
+            var item = new UnidentifiedItem()
             {
                 UnidentifiedName = unidentifiedName
             };
