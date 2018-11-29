@@ -114,14 +114,11 @@ namespace TorunekoTool
 
         public bool ResetItem(string itemName)
         {
-            foreach (DtoItem item in ItemList)
+            foreach (var unItem in UnidentifiedList)
             {
-                if (item.ItemName == itemName)
+                if (unItem.Item != null && unItem.Item.ItemName == itemName)
                 {
-                    item.ItemName = null;
-                    item.MoneyToBuy = null;
-                    item.MoneyToSell = null;
-                    item.Note = null;
+                    unItem.Item = null;
                     SetDataTable();
                     return true;
                 }
