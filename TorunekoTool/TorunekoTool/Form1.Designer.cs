@@ -65,9 +65,9 @@
             this.LblType.AutoSize = true;
             this.LblType.Location = new System.Drawing.Point(62, 29);
             this.LblType.Name = "LblType";
-            this.LblType.Size = new System.Drawing.Size(44, 18);
+            this.LblType.Size = new System.Drawing.Size(201, 18);
             this.LblType.TabIndex = 1;
-            this.LblType.Text = "種類";
+            this.LblType.Text = "種類（スペースキーで変更）";
             // 
             // LblName
             // 
@@ -188,9 +188,11 @@
             this.Controls.Add(this.LblName);
             this.Controls.Add(this.LblType);
             this.Controls.Add(this.DgvMain);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

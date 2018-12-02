@@ -288,5 +288,25 @@ namespace TorunekoTool
         {
             Initialize();
         }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Spaceが押下されたときアイテム種を変更
+            if (e.KeyData == Keys.Space)
+            {
+                if (comboBox1.SelectedIndex == comboBox1.Items.Count - 1)
+                {
+                    comboBox1.SelectedIndex = 0;
+                    SetDgv();
+                }
+                else
+                {
+                    comboBox1.SelectedIndex = comboBox1.SelectedIndex + 1;
+                    SetDgv();
+                }
+
+                e.Handled = true;
+            }
+        }
     }
 }
