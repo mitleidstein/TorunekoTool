@@ -208,15 +208,29 @@ namespace TorunekoTool
                 if (item.ItemName == LsbItem.SelectedItem.ToString())
                 {
                     int rowIndex = DgvMain.CurrentRow.Index;
-                    string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
+                    DataGridViewRow row = DgvMain.Rows[rowIndex];
+                    string unidentifiedName = row.Cells[0].Value.ToString();
 
                     //すでに値が入ってる場合
-                    string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
+                    string itemName = row.Cells[1].Value.ToString();
                     ResetItemName(index, rowIndex, itemName);
+
+ 
 
                     UnidentifiedItem unItem = new UnidentifiedItem();
                     unItem.UnidentifiedName = unidentifiedName;
                     unItem.Item = item;
+
+                    if (int.TryParse(row.Cells[2].Value.ToString(), out int resultBuy))
+                    {
+                        unItem.MoneyToBuy = resultBuy;
+                    }
+
+                    if (int.TryParse(row.Cells[3].Value.ToString(), out int resultSell))
+                    {
+                        unItem.MoneyToSell = resultSell;
+                    }
+
                     TableMakerList[index].SetItem(unItem);
                     ItemList[index].Remove(item);
 
