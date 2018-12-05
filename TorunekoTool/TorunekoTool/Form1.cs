@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
 namespace TorunekoTool
@@ -355,6 +356,10 @@ namespace TorunekoTool
                 ExecuteSet();
                 e.Handled = true;
             }
+            else if (!TxbMoneyToSell.Focused && IsPressedNumberOrBackSpace(e.KeyData))
+            {
+                TxbMoneyToBuy.Focus();
+            }
         }
 
         private void TxbMoneyToBuy_KeyPress(object sender, KeyPressEventArgs e)
@@ -382,6 +387,28 @@ namespace TorunekoTool
         /// <returns></returns>
         private bool IsPressedNumberOrBackSpace(char key) {
             return (key < '0' || '9' < key) && key != '\b';
+        }
+
+        /// <summary>
+        /// 押されたキーが 0～9、バックスペースでないときはtrue
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private bool IsPressedNumberOrBackSpace(Keys key) {
+            IEnumerable<Keys> keyList = new List<Keys>() {
+                Keys.D0, Keys.D1, Keys.D2, Keys.D3,
+                Keys.D4, Keys.D5, Keys.D6,
+                Keys.D7, Keys.D8, Keys.D9, Keys.Back
+            };
+            
+            foreach (var k in keyList)
+            {
+                if (key == k) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
