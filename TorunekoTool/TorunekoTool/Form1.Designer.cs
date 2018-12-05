@@ -116,21 +116,23 @@
             // 
             // BtnSet
             // 
-            this.BtnSet.Location = new System.Drawing.Point(1164, 609);
+            this.BtnSet.Location = new System.Drawing.Point(1113, 609);
             this.BtnSet.Name = "BtnSet";
-            this.BtnSet.Size = new System.Drawing.Size(96, 32);
+            this.BtnSet.Size = new System.Drawing.Size(147, 32);
             this.BtnSet.TabIndex = 9;
-            this.BtnSet.Text = "決定(M)";
+            this.BtnSet.Text = "価格決定(M)";
             this.BtnSet.UseVisualStyleBackColor = true;
             this.BtnSet.Click += new System.EventHandler(this.BtnSet_Click);
             // 
             // TxbMoneyToBuy
             // 
+            this.TxbMoneyToBuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.TxbMoneyToBuy.Location = new System.Drawing.Point(1083, 466);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
             this.TxbMoneyToBuy.TextChanged += new System.EventHandler(this.TxbMoneyToBuy_TextChanged);
+            this.TxbMoneyToBuy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbMoneyToBuy_KeyPress);
             // 
             // TxbMoneyToSell
             // 
@@ -139,6 +141,7 @@
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
             this.TxbMoneyToSell.TextChanged += new System.EventHandler(this.TxbMoneyToSell_TextChanged);
+            this.TxbMoneyToSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbMoneyToSell_KeyPress);
             // 
             // BtnReset
             // 

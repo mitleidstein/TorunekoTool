@@ -343,15 +343,45 @@ namespace TorunekoTool
             else if (e.KeyData == Keys.D)
             {
                 ExecuteDecide();
+                e.Handled = true;
             }
             else if (e.KeyData == Keys.R)
             {
                 ExecuteReset();
+                e.Handled = true;
             }
             else if (e.KeyData == Keys.M)
             {
                 ExecuteSet();
+                e.Handled = true;
             }
+        }
+
+        private void TxbMoneyToBuy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (IsPressedNumberOrBackSpace(e.KeyChar))
+            {
+                //押されたキーが 0～9でない場合は、テキストボックスに値が入らないようにする
+                e.Handled = true;
+            }
+        }
+
+        private void TxbMoneyToSell_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (IsPressedNumberOrBackSpace(e.KeyChar))
+            {
+                //押されたキーが 0～9でない場合は、テキストボックスに値が入らないようにする
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// 押されたキーが 0～9、バックスペースでないときはtrue
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private bool IsPressedNumberOrBackSpace(char key) {
+            return (key < '0' || '9' < key) && key != '\b';
         }
     }
 }
