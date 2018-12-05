@@ -116,11 +116,11 @@
             // 
             // BtnSet
             // 
-            this.BtnSet.Location = new System.Drawing.Point(1121, 606);
+            this.BtnSet.Location = new System.Drawing.Point(1164, 609);
             this.BtnSet.Name = "BtnSet";
-            this.BtnSet.Size = new System.Drawing.Size(75, 32);
+            this.BtnSet.Size = new System.Drawing.Size(96, 32);
             this.BtnSet.TabIndex = 9;
-            this.BtnSet.Text = "決定";
+            this.BtnSet.Text = "決定(M)";
             this.BtnSet.UseVisualStyleBackColor = true;
             this.BtnSet.Click += new System.EventHandler(this.BtnSet_Click);
             // 
@@ -142,11 +142,11 @@
             // 
             // BtnReset
             // 
-            this.BtnReset.Location = new System.Drawing.Point(1072, 353);
+            this.BtnReset.Location = new System.Drawing.Point(1042, 353);
             this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(76, 31);
+            this.BtnReset.Size = new System.Drawing.Size(106, 31);
             this.BtnReset.TabIndex = 12;
-            this.BtnReset.Text = "リセット";
+            this.BtnReset.Text = "リセット(R)";
             this.BtnReset.UseVisualStyleBackColor = true;
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
@@ -154,9 +154,9 @@
             // 
             this.BtnDecide.Location = new System.Drawing.Point(1165, 353);
             this.BtnDecide.Name = "BtnDecide";
-            this.BtnDecide.Size = new System.Drawing.Size(76, 31);
+            this.BtnDecide.Size = new System.Drawing.Size(95, 31);
             this.BtnDecide.TabIndex = 13;
-            this.BtnDecide.Text = "決定";
+            this.BtnDecide.Text = "決定(D)";
             this.BtnDecide.UseVisualStyleBackColor = true;
             this.BtnDecide.Click += new System.EventHandler(this.BtnDecide_Click);
             // 

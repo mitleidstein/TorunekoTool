@@ -17,6 +17,10 @@ namespace TorunekoTool
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
+            ExecuteReset();
+        }
+
+        private void ExecuteReset() {
             int index = int.Parse(comboBox1.SelectedValue.ToString());
             int rowIndex = DgvMain.CurrentRow.Index;
             string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
@@ -189,6 +193,11 @@ namespace TorunekoTool
 
         private void BtnDecide_Click(object sender, EventArgs e)
         {
+            ExecuteDecide();
+        }
+
+        private void ExecuteDecide()
+        {
             if (LsbItem.SelectedItem == null)
             {
                 return;
@@ -209,7 +218,7 @@ namespace TorunekoTool
                     //すでに値が入ってる場合
                     string itemName = row.Cells[1].Value.ToString();
                     ResetItemName(index, row.Index, itemName);
-                    
+
                     UnidentifiedItem unItem = new UnidentifiedItem();
                     unItem.UnidentifiedName = unidentifiedName;
                     unItem.Item = item;
@@ -227,7 +236,7 @@ namespace TorunekoTool
                     TableMakerList[index].SetItem(unItem);
                     ItemList[index].Remove(item);
 
-                   
+
                     SetListBox();
 
                     DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
@@ -239,11 +248,15 @@ namespace TorunekoTool
 
         private void BtnSet_Click(object sender, EventArgs e)
         {
+            ExecuteSet();
+        }
+
+        private void ExecuteSet() {
             int index = int.Parse(comboBox1.SelectedValue.ToString());
 
             int rowIndex = DgvMain.CurrentRow.Index;
             DataGridViewRow row = DgvMain.CurrentRow;
-            
+
             string unidentifiedName = row.Cells[0].Value.ToString();
 
             //すでに値が入ってる場合
@@ -254,7 +267,7 @@ namespace TorunekoTool
             {
                 UnidentifiedName = unidentifiedName
             };
-            
+
             if (TxbMoneyToBuy.Text != "")
             {
                 item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
@@ -264,7 +277,7 @@ namespace TorunekoTool
                 //すでに買値がグリッドビューに入っていた時
                 item.MoneyToBuy = resultBuy;
             }
-            
+
             if (TxbMoneyToSell.Text != "")
             {
                 item.MoneyToSell = int.Parse(TxbMoneyToSell.Text);
@@ -283,7 +296,6 @@ namespace TorunekoTool
             //TxbMoneyToSell.Text = "";
 
             SetListBox(DgvMain.Rows[rowIndex]);
-            return;
         }
 
         private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
@@ -327,6 +339,18 @@ namespace TorunekoTool
                 }
 
                 e.Handled = true;
+            }
+            else if (e.KeyData == Keys.D)
+            {
+                ExecuteDecide();
+            }
+            else if (e.KeyData == Keys.R)
+            {
+                ExecuteReset();
+            }
+            else if (e.KeyData == Keys.M)
+            {
+                ExecuteSet();
             }
         }
     }
