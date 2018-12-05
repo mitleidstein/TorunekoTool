@@ -208,25 +208,24 @@ namespace TorunekoTool
                 if (item.ItemName == LsbItem.SelectedItem.ToString())
                 {
                     int rowIndex = DgvMain.CurrentRow.Index;
-                    DataGridViewRow row = DgvMain.Rows[rowIndex];
-                    string unidentifiedName = row.Cells[0].Value.ToString();
+                    DataGridViewRow row = DgvMain.CurrentRow;
+
+                    string unidentifiedName = DgvMain.CurrentRow.Cells[0].Value.ToString();
 
                     //すでに値が入ってる場合
                     string itemName = row.Cells[1].Value.ToString();
-                    ResetItemName(index, rowIndex, itemName);
-
- 
-
+                    ResetItemName(index, row.Index, itemName);
+                    
                     UnidentifiedItem unItem = new UnidentifiedItem();
                     unItem.UnidentifiedName = unidentifiedName;
                     unItem.Item = item;
 
-                    if (int.TryParse(row.Cells[2].Value.ToString(), out int resultBuy))
+                    if (row.Cells[2].Value != null && int.TryParse(row.Cells[2].Value.ToString(), out int resultBuy))
                     {
                         unItem.MoneyToBuy = resultBuy;
                     }
 
-                    if (int.TryParse(row.Cells[3].Value.ToString(), out int resultSell))
+                    if (row.Cells[3].Value != null && int.TryParse(row.Cells[3].Value.ToString(), out int resultSell))
                     {
                         unItem.MoneyToSell = resultSell;
                     }
@@ -234,8 +233,11 @@ namespace TorunekoTool
                     TableMakerList[index].SetItem(unItem);
                     ItemList[index].Remove(item);
 
-                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[1];
+                   
                     SetListBox();
+
+                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+                    Console.Write("XXX" + DgvMain.Rows[rowIndex]);
                     return;
                 }
             }
@@ -246,36 +248,47 @@ namespace TorunekoTool
             int index = int.Parse(comboBox1.SelectedValue.ToString());
 
             int rowIndex = DgvMain.CurrentRow.Index;
-            string unidentifiedName = DgvMain.Rows[rowIndex].Cells[0].Value.ToString();
+            DataGridViewRow row = DgvMain.CurrentRow;
+            
+            string unidentifiedName = row.Cells[0].Value.ToString();
 
             //すでに値が入ってる場合
-            string itemName = DgvMain.Rows[rowIndex].Cells[1].Value.ToString();
+            string itemName = row.Cells[1].Value.ToString();
             ResetItemName(index, rowIndex, itemName);
 
             var item = new UnidentifiedItem()
             {
                 UnidentifiedName = unidentifiedName
             };
-
+            
             if (TxbMoneyToBuy.Text != "")
             {
                 item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
             }
-
-
+            else if (row.Cells[2].Value != null && int.TryParse(row.Cells[2].Value.ToString(), out int resultBuy))
+            {
+                //すでに買値がグリッドビューに入っていた時
+                item.MoneyToBuy = resultBuy;
+            }
+            
             if (TxbMoneyToSell.Text != "")
             {
                 item.MoneyToSell = int.Parse(TxbMoneyToSell.Text);
+            }
+            else if (row.Cells[3].Value != null && int.TryParse(row.Cells[3].Value.ToString(), out int resultSell))
+            {
+                //すでに買値がグリッドビューに入っていた時
+                item.MoneyToSell = resultSell;
             }
 
             TableMakerList[index].SetItem(item);
 
             DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[1];
 
-            TxbMoneyToBuy.Text = "";
-            TxbMoneyToSell.Text = "";
+            //TxbMoneyToBuy.Text = "";
+            //TxbMoneyToSell.Text = "";
 
-            SetListBox(DgvMain.CurrentRow);
+            SetListBox(DgvMain.Rows[rowIndex]);
             return;
         }
 
