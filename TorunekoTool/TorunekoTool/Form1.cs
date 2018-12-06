@@ -115,7 +115,6 @@ namespace TorunekoTool
 
                 LsbItem.Items.Add(retItem.ItemName);
             }
-
         }
 
         private void SetListBox(int type)
@@ -425,6 +424,23 @@ namespace TorunekoTool
         private void LsbItem_DoubleClick(object sender, EventArgs e)
         {
             ExecuteDecide();
+        }
+
+        private void LsbItem_SelectedValueChanged(object sender, EventArgs e)
+        {
+            int index = int.Parse(comboBox1.SelectedValue.ToString());
+            string itemName = LsbItem.SelectedItem.ToString();
+            Console.WriteLine(itemName);
+
+            foreach (var retItem in ItemList[index])
+            {
+                if (itemName == retItem.ItemName)
+                {
+                    LblBuy.Text = retItem.MoneyToBuy.ToString();
+                    LblSell.Text = retItem.MoneyToSell.ToString();
+                    LblNote.Text = retItem.Note.ToString();
+                }
+            }
         }
     }
 }

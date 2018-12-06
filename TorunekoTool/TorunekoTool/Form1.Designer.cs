@@ -42,6 +42,9 @@
             this.BtnDecide = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.LblDgv = new System.Windows.Forms.Label();
+            this.LblBuy = new System.Windows.Forms.Label();
+            this.LblSell = new System.Windows.Forms.Label();
+            this.LblNote = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +76,7 @@
             // LblName
             // 
             this.LblName.AutoSize = true;
-            this.LblName.Location = new System.Drawing.Point(1039, 29);
+            this.LblName.Location = new System.Drawing.Point(1031, 33);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(206, 18);
             this.LblName.TabIndex = 2;
@@ -102,10 +105,11 @@
             this.LsbItem.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.LsbItem.FormattingEnabled = true;
             this.LsbItem.ItemHeight = 22;
-            this.LsbItem.Location = new System.Drawing.Point(1042, 61);
+            this.LsbItem.Location = new System.Drawing.Point(1027, 65);
             this.LsbItem.Name = "LsbItem";
             this.LsbItem.Size = new System.Drawing.Size(218, 290);
             this.LsbItem.TabIndex = 5;
+            this.LsbItem.SelectedValueChanged += new System.EventHandler(this.LsbItem_SelectedValueChanged);
             this.LsbItem.DoubleClick += new System.EventHandler(this.LsbItem_DoubleClick);
             // 
             // comboBox1
@@ -119,7 +123,7 @@
             // 
             // BtnSet
             // 
-            this.BtnSet.Location = new System.Drawing.Point(1113, 609);
+            this.BtnSet.Location = new System.Drawing.Point(1098, 609);
             this.BtnSet.Name = "BtnSet";
             this.BtnSet.Size = new System.Drawing.Size(147, 32);
             this.BtnSet.TabIndex = 9;
@@ -130,7 +134,7 @@
             // TxbMoneyToBuy
             // 
             this.TxbMoneyToBuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1048, 477);
+            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1038, 477);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
@@ -139,7 +143,7 @@
             // 
             // TxbMoneyToSell
             // 
-            this.TxbMoneyToSell.Location = new System.Drawing.Point(1048, 556);
+            this.TxbMoneyToSell.Location = new System.Drawing.Point(1038, 556);
             this.TxbMoneyToSell.Name = "TxbMoneyToSell";
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
@@ -148,7 +152,7 @@
             // 
             // BtnReset
             // 
-            this.BtnReset.Location = new System.Drawing.Point(1042, 370);
+            this.BtnReset.Location = new System.Drawing.Point(1027, 370);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(106, 31);
             this.BtnReset.TabIndex = 12;
@@ -158,7 +162,7 @@
             // 
             // BtnDecide
             // 
-            this.BtnDecide.Location = new System.Drawing.Point(1165, 370);
+            this.BtnDecide.Location = new System.Drawing.Point(1150, 370);
             this.BtnDecide.Name = "BtnDecide";
             this.BtnDecide.Size = new System.Drawing.Size(95, 31);
             this.BtnDecide.TabIndex = 13;
@@ -168,7 +172,7 @@
             // 
             // BtnNew
             // 
-            this.BtnNew.Location = new System.Drawing.Point(563, 48);
+            this.BtnNew.Location = new System.Drawing.Point(38, 17);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(120, 30);
             this.BtnNew.TabIndex = 14;
@@ -185,11 +189,40 @@
             this.LblDgv.TabIndex = 15;
             this.LblDgv.Text = "識別表 (Gでフォーカス)";
             // 
+            // LblBuy
+            // 
+            this.LblBuy.AutoSize = true;
+            this.LblBuy.Location = new System.Drawing.Point(1172, 480);
+            this.LblBuy.Name = "LblBuy";
+            this.LblBuy.Size = new System.Drawing.Size(17, 18);
+            this.LblBuy.TabIndex = 16;
+            this.LblBuy.Text = "0";
+            // 
+            // LblSell
+            // 
+            this.LblSell.AutoSize = true;
+            this.LblSell.Location = new System.Drawing.Point(1172, 559);
+            this.LblSell.Name = "LblSell";
+            this.LblSell.Size = new System.Drawing.Size(17, 18);
+            this.LblSell.TabIndex = 17;
+            this.LblSell.Text = "0";
+            // 
+            // LblNote
+            // 
+            this.LblNote.Location = new System.Drawing.Point(513, 17);
+            this.LblNote.Name = "LblNote";
+            this.LblNote.Size = new System.Drawing.Size(462, 84);
+            this.LblNote.TabIndex = 18;
+            this.LblNote.Text = "アイテム概要";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1272, 670);
+            this.Controls.Add(this.LblNote);
+            this.Controls.Add(this.LblSell);
+            this.Controls.Add(this.LblBuy);
             this.Controls.Add(this.LblDgv);
             this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.BtnDecide);
@@ -231,6 +264,9 @@
         private System.Windows.Forms.Button BtnDecide;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.Label LblDgv;
+        private System.Windows.Forms.Label LblBuy;
+        private System.Windows.Forms.Label LblSell;
+        private System.Windows.Forms.Label LblNote;
     }
 }
 
