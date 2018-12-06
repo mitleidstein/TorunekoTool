@@ -359,6 +359,14 @@ namespace TorunekoTool
                 ExecuteSet();
                 e.Handled = true;
             }
+            else if (e.KeyData == Keys.G)
+            {
+                DgvMain.Focus();
+            }
+            else if (e.KeyData == Keys.L)
+            {
+                LsbItem.Focus();
+            }
             else if (!TxbMoneyToSell.Focused && IsPressedNumberOrBackSpace(e.KeyData))
             {
                 TxbMoneyToBuy.Focus();

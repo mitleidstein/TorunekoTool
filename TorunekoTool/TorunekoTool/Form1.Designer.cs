@@ -41,6 +41,7 @@
             this.BtnReset = new System.Windows.Forms.Button();
             this.BtnDecide = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
+            this.LblDgv = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             // LblType
             // 
             this.LblType.AutoSize = true;
-            this.LblType.Location = new System.Drawing.Point(62, 29);
+            this.LblType.Location = new System.Drawing.Point(267, 23);
             this.LblType.Name = "LblType";
             this.LblType.Size = new System.Drawing.Size(201, 18);
             this.LblType.TabIndex = 1;
@@ -72,29 +73,29 @@
             // LblName
             // 
             this.LblName.AutoSize = true;
-            this.LblName.Location = new System.Drawing.Point(1080, 29);
+            this.LblName.Location = new System.Drawing.Point(1039, 29);
             this.LblName.Name = "LblName";
-            this.LblName.Size = new System.Drawing.Size(100, 18);
+            this.LblName.Size = new System.Drawing.Size(206, 18);
             this.LblName.TabIndex = 2;
-            this.LblName.Text = "アイテム候補";
+            this.LblName.Text = "アイテム候補 (Lでフォーカス)";
             // 
             // LblMoneyToBuy
             // 
             this.LblMoneyToBuy.AutoSize = true;
-            this.LblMoneyToBuy.Location = new System.Drawing.Point(1080, 441);
+            this.LblMoneyToBuy.Location = new System.Drawing.Point(1018, 443);
             this.LblMoneyToBuy.Name = "LblMoneyToBuy";
-            this.LblMoneyToBuy.Size = new System.Drawing.Size(44, 18);
+            this.LblMoneyToBuy.Size = new System.Drawing.Size(176, 18);
             this.LblMoneyToBuy.TabIndex = 3;
-            this.LblMoneyToBuy.Text = "買値";
+            this.LblMoneyToBuy.Text = "買値 (数字でフォーカス)";
             // 
             // LblMoneyToSell
             // 
             this.LblMoneyToSell.AutoSize = true;
-            this.LblMoneyToSell.Location = new System.Drawing.Point(1080, 522);
+            this.LblMoneyToSell.Location = new System.Drawing.Point(1018, 525);
             this.LblMoneyToSell.Name = "LblMoneyToSell";
-            this.LblMoneyToSell.Size = new System.Drawing.Size(44, 18);
+            this.LblMoneyToSell.Size = new System.Drawing.Size(227, 18);
             this.LblMoneyToSell.TabIndex = 4;
-            this.LblMoneyToSell.Text = "売値";
+            this.LblMoneyToSell.Text = "売値 (数字→TABでフォーカス)";
             // 
             // LsbItem
             // 
@@ -110,7 +111,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 61);
+            this.comboBox1.Location = new System.Drawing.Point(270, 55);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 26);
             this.comboBox1.TabIndex = 6;
@@ -129,7 +130,7 @@
             // TxbMoneyToBuy
             // 
             this.TxbMoneyToBuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1083, 477);
+            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1048, 477);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
@@ -138,7 +139,7 @@
             // 
             // TxbMoneyToSell
             // 
-            this.TxbMoneyToSell.Location = new System.Drawing.Point(1083, 557);
+            this.TxbMoneyToSell.Location = new System.Drawing.Point(1048, 556);
             this.TxbMoneyToSell.Name = "TxbMoneyToSell";
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
@@ -175,11 +176,21 @@
             this.BtnNew.UseVisualStyleBackColor = true;
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
+            // LblDgv
+            // 
+            this.LblDgv.AutoSize = true;
+            this.LblDgv.Location = new System.Drawing.Point(35, 83);
+            this.LblDgv.Name = "LblDgv";
+            this.LblDgv.Size = new System.Drawing.Size(170, 18);
+            this.LblDgv.TabIndex = 15;
+            this.LblDgv.Text = "識別表 (Gでフォーカス)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1272, 670);
+            this.Controls.Add(this.LblDgv);
             this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.BtnDecide);
             this.Controls.Add(this.BtnReset);
@@ -219,6 +230,7 @@
         private System.Windows.Forms.Button BtnReset;
         private System.Windows.Forms.Button BtnDecide;
         private System.Windows.Forms.Button BtnNew;
+        private System.Windows.Forms.Label LblDgv;
     }
 }
 
