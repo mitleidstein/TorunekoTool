@@ -81,7 +81,7 @@
             // LblMoneyToBuy
             // 
             this.LblMoneyToBuy.AutoSize = true;
-            this.LblMoneyToBuy.Location = new System.Drawing.Point(1080, 430);
+            this.LblMoneyToBuy.Location = new System.Drawing.Point(1080, 441);
             this.LblMoneyToBuy.Name = "LblMoneyToBuy";
             this.LblMoneyToBuy.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToBuy.TabIndex = 3;
@@ -90,7 +90,7 @@
             // LblMoneyToSell
             // 
             this.LblMoneyToSell.AutoSize = true;
-            this.LblMoneyToSell.Location = new System.Drawing.Point(1080, 521);
+            this.LblMoneyToSell.Location = new System.Drawing.Point(1080, 522);
             this.LblMoneyToSell.Name = "LblMoneyToSell";
             this.LblMoneyToSell.Size = new System.Drawing.Size(44, 18);
             this.LblMoneyToSell.TabIndex = 4;
@@ -98,12 +98,14 @@
             // 
             // LsbItem
             // 
+            this.LsbItem.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.LsbItem.FormattingEnabled = true;
-            this.LsbItem.ItemHeight = 18;
-            this.LsbItem.Location = new System.Drawing.Point(1072, 61);
+            this.LsbItem.ItemHeight = 22;
+            this.LsbItem.Location = new System.Drawing.Point(1042, 61);
             this.LsbItem.Name = "LsbItem";
-            this.LsbItem.Size = new System.Drawing.Size(188, 274);
+            this.LsbItem.Size = new System.Drawing.Size(218, 290);
             this.LsbItem.TabIndex = 5;
+            this.LsbItem.DoubleClick += new System.EventHandler(this.LsbItem_DoubleClick);
             // 
             // comboBox1
             // 
@@ -127,7 +129,7 @@
             // TxbMoneyToBuy
             // 
             this.TxbMoneyToBuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1083, 466);
+            this.TxbMoneyToBuy.Location = new System.Drawing.Point(1083, 477);
             this.TxbMoneyToBuy.Name = "TxbMoneyToBuy";
             this.TxbMoneyToBuy.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToBuy.TabIndex = 10;
@@ -136,7 +138,7 @@
             // 
             // TxbMoneyToSell
             // 
-            this.TxbMoneyToSell.Location = new System.Drawing.Point(1083, 556);
+            this.TxbMoneyToSell.Location = new System.Drawing.Point(1083, 557);
             this.TxbMoneyToSell.Name = "TxbMoneyToSell";
             this.TxbMoneyToSell.Size = new System.Drawing.Size(100, 25);
             this.TxbMoneyToSell.TabIndex = 11;
@@ -145,7 +147,7 @@
             // 
             // BtnReset
             // 
-            this.BtnReset.Location = new System.Drawing.Point(1042, 353);
+            this.BtnReset.Location = new System.Drawing.Point(1042, 370);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(106, 31);
             this.BtnReset.TabIndex = 12;
@@ -155,7 +157,7 @@
             // 
             // BtnDecide
             // 
-            this.BtnDecide.Location = new System.Drawing.Point(1165, 353);
+            this.BtnDecide.Location = new System.Drawing.Point(1165, 370);
             this.BtnDecide.Name = "BtnDecide";
             this.BtnDecide.Size = new System.Drawing.Size(95, 31);
             this.BtnDecide.TabIndex = 13;

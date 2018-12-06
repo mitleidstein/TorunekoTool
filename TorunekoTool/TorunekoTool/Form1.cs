@@ -413,5 +413,10 @@ namespace TorunekoTool
 
             return false;
         }
+
+        private void LsbItem_DoubleClick(object sender, EventArgs e)
+        {
+            ExecuteDecide();
+        }
     }
 }
