@@ -1,0 +1,21 @@
+@startuml {Fig4.1.png}
+title クラス図
+
+class UnidentifiedItem {
+    + string UnidentifiedName {get; set;}
+    + DtoItem Item {get; set;}
+    + int? MoneyToBuy {get; set;}
+    + int? MoneyToSell {get; set;}
+}
+
+class DtoItem {
+    + string UnidentifiedName {get; set;}
+    + string ItemName {get; set;}
+    + int? MoneyToBuy {get; set;}
+    + int? MoneyToSell {get; set;}
+    + string Note {get; set;}
+}
+
+DtoItem .left.> UnidentifiedItem
+
+@enduml
