@@ -1,6 +1,67 @@
 @startuml {Fig4.1.png}
 title クラス図
 
+
+class Form1 {
+    - List<ItemDataTableMaker> TableMakerList
+    - TypeDataTableMaker ComboMaker
+    - List<List<DtoItem>> ItemList
+
+    + Form1()
+    - void BtnReset_Click(object sender, EventArgs e)
+    - void ExecuteReset()
+    - void ResetItemName(int typeNum, int rowIndex, string itemName)
+    - void Form1_Load(object sender, EventArgs e)
+    - void Initialize()
+    - void SetDgv()
+    - void GetItemList()
+    - void SetListBox(DtoItem item)
+    - void SetListBox(int type)
+    - void SetListBox(DataGridViewRow row)
+    - void SetListBox()
+    - void DgvMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    - void TxbMoneyToBuy_TextChanged(object sender, EventArgs e)
+    - void TxbMoneyToSell_TextChanged(object sender, EventArgs e)
+    - void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+    - void BtnDecide_Click(object sender, EventArgs e)
+    - void ExecuteDecide()
+    - void BtnSet_Click(object sender, EventArgs e)
+    - void ExecuteSet()
+    - void DgvMain_CurrentCellChanged(object sender, EventArgs e)
+    - void BtnNew_Click(object sender, EventArgs e)
+    - void Form1_KeyUp(object sender, KeyEventArgs e)
+    - void TxbMoneyToBuy_KeyPress(object sender, KeyPressEventArgs e)
+    - void TxbMoneyToSell_KeyPress(object sender, KeyPressEventArgs e)
+}
+
+class ItemDataTableMaker {
+    + DataTable Table { get; - set; }
+    - List<UnidentifiedItem> UnidentifiedList
+    - List<DtoItem> ItemList
+    + void CreateDataTable(int type)
+    - void SetDataTable()
+    + void SetItem(UnidentifiedItem argItem)
+    + DtoItem SearchItem(string itemName)
+    + bool ResetItem(string itemName)
+}
+
+class TypeDataTableMaker {
+    - DataTable Table
+    - List<DtoType> TypeList
+    + DataTable GetDataTable()
+}
+
+class DaoItem {
+    - OdbcConnection con;
+    + void OpenConnection()
+    + List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item)
+    + List<DtoType> GetTypeList()
+    + List<DtoItem> GetItemList(DtoItem item)
+    + List<DtoItem> SearchItem(DtoItem item)
+    + int GetTypeNumber()
+    + void CloseConnection()
+}
+
 class UnidentifiedItem {
     + string UnidentifiedName {get; set;}
     + DtoItem Item {get; set;}
@@ -16,6 +77,14 @@ class DtoItem {
     + string Note {get; set;}
 }
 
-DtoItem .left.> UnidentifiedItem
+class DtoType {
+    + int TypeNumber { get; set; }
+    + string TypeName { get; set; }
+}
 
+DtoItem .up.> UnidentifiedItem
+ItemDataTableMaker <.right. DtoItem
+ItemDataTableMaker <.right. UnidentifiedItem
+
+TypeDataTableMaker <.right. DtoType
 @enduml
