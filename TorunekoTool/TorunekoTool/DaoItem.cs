@@ -22,7 +22,7 @@ namespace TorunekoTool
         public List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item) {
             string sql = "SELECT UNIDENTIFIEDNAME " +
                 "FROM UNIDENTIFIEDNAMEMASTER " +
-                $"WHERE TYPENUMBER = {item.TypeNumber}";
+                $"WHERE TYPENUMBER = {item.TypeNumber} ORDER BY UNIDENTIFIEDNAME";
 
             var itemList = new List<UnidentifiedItem>();
 
