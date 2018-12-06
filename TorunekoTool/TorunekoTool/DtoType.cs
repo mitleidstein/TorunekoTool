@@ -10,5 +10,8 @@ namespace TorunekoTool
     {
         public int TypeNumber { get; set; }
         public string TypeName { get; set; }
+        public int RColor { get; set; }
+        public int GColor { get; set; }
+        public int BColor { get; set; }
     }
 }

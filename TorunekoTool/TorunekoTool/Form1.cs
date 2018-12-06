@@ -190,6 +190,9 @@ namespace TorunekoTool
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             SetDgv();
+            DtoType type = ComboMaker.GetType(comboBox1.SelectedIndex);
+            this.BackColor = System.Drawing.Color.FromArgb(type.RColor, type.GColor, type.BColor);
+            DgvMain.BackgroundColor = System.Drawing.Color.FromArgb(type.RColor, type.GColor, type.BColor);
         }
 
         private void BtnDecide_Click(object sender, EventArgs e)

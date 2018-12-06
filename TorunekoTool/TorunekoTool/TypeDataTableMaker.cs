@@ -49,5 +49,14 @@ namespace TorunekoTool
 
             return Table;
         }
+
+        /// <summary>
+        /// TypeNumberからDtoTypeを1つだけ返す
+        /// </summary>
+        /// <param name="typeNumber"></param>
+        /// <returns></returns>
+        public DtoType GetType(int typeNumber) {
+            return TypeList.Single(x => x.TypeNumber == typeNumber);
+        }
     }
 }

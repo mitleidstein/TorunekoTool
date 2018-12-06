@@ -45,7 +45,7 @@ namespace TorunekoTool
 
         public List<DtoType> GetTypeList()
         {
-            string sql = "SELECT TYPENUMBER, TYPENAME FROM TYPEMASTER";
+            string sql = "SELECT TYPENUMBER, TYPENAME, RCOLOR, GCOLOR, BCOLOR FROM TYPEMASTER";
 
             var typeList = new List<DtoType>();
 
@@ -58,7 +58,10 @@ namespace TorunekoTool
                         var retType = new DtoType()
                         {
                             TypeNumber = int.Parse(reader[0].ToString()),
-                            TypeName = reader[1].ToString()
+                            TypeName = reader[1].ToString(),
+                            RColor = int.Parse(reader[2].ToString()),
+                            GColor = int.Parse(reader[3].ToString()),
+                            BColor = int.Parse(reader[4].ToString()),
                         };
 
                         typeList.Add(retType);
