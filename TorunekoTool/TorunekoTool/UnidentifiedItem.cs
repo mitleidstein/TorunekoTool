@@ -13,5 +13,15 @@ namespace TorunekoTool
         public int? MoneyToBuy { get; set; }
         public int? MoneyToSell { get; set; }
         public int TypeNumber { get; set; }
+
+        public UnidentifiedItem ()
+        {
+        }
+
+        public UnidentifiedItem(string unidentifiedName, int typeNumber)
+        {
+            UnidentifiedName = unidentifiedName;
+            TypeNumber = TypeNumber;
+        }
     }
 }
