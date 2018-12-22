@@ -29,7 +29,7 @@ namespace TorunekoTool
             Table.Columns.Add(column4);
             Table.Columns.Add(column5);
 
-            DaoItem dao = new DaoItem();
+            DaoItem dao = new DaoItemNoDb();
 
             try
             {
