@@ -131,44 +131,6 @@ namespace TorunekoTool
 
             return itemList;
         }
-
-        public virtual List<DtoItem> SearchItem(DtoItem item) {
-            string sql = "SELECT ITEMNAME, ITEMMASTER.TYPENUMBER, MONEYTOBUY, MONEYTOSELL, NOTE " +
-                "FROM ITEMMASTER JOIN TYPEMASTER ON ITEMMASTER.TYPENUMBER = TYPEMASTER.TYPENUMBER " +
-                $"WHERE ITEMMASTER.TYPENUMBER = {item.TypeNumber}";
-
-            var itemList = new List<DtoItem>();
-
-            using (var cmd = new OdbcCommand(sql, con)) {
-                //var param = new OdbcParameter("TypeNumber", item.TypeNumber);
-                /*
-                var param = new OdbcParameter("TypeNumber", OdbcType.Int, 1,
-                    ParameterDirection.Input, false, 1, 1, "TYPEMASTER.TYPENUMBER", 
-                    DataRowVersion.Default, item.TypeNumber);
-                  */
-                using (var reader = cmd.ExecuteReader()) {
-                    while (reader.Read()) {
-                        //0: ITEMNAME, 1: ITEMMASTER.TYPENUMBER, 2: MONEYTOBUY, 3: MONEYTOSELL, 4: NOTE
-                        var retItem = new DtoItem()
-                        {
-                            ItemName = reader[0].ToString(),
-                            TypeNumber = int.Parse(reader[1].ToString()),
-                            MoneyToBuy = int.Parse(reader[2].ToString()),
-                            MoneyToSell = int.Parse(reader[3].ToString()),
-                            Note = reader[4].ToString(),
-                        };
-
-                        itemList.Add(retItem);
-                    }
-                }
-            }
-            
-            return itemList;
-        }
-
-        public virtual int GetTypeNumber() {
-            return 0;
-        }
         
         public virtual void CloseConnection() {
             if (con != null) {
