@@ -102,12 +102,12 @@
             // 
             // LsbItem
             // 
-            this.LsbItem.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LsbItem.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.LsbItem.FormattingEnabled = true;
-            this.LsbItem.ItemHeight = 22;
+            this.LsbItem.ItemHeight = 20;
             this.LsbItem.Location = new System.Drawing.Point(1027, 65);
             this.LsbItem.Name = "LsbItem";
-            this.LsbItem.Size = new System.Drawing.Size(218, 290);
+            this.LsbItem.Size = new System.Drawing.Size(218, 304);
             this.LsbItem.TabIndex = 5;
             this.LsbItem.SelectedValueChanged += new System.EventHandler(this.LsbItem_SelectedValueChanged);
             this.LsbItem.DoubleClick += new System.EventHandler(this.LsbItem_DoubleClick);
@@ -241,6 +241,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.DgvMain)).EndInit();
             this.ResumeLayout(false);

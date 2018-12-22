@@ -436,5 +436,13 @@ namespace TorunekoTool
                 }
             }
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Space)
+            {
+                DgvMain.Focus();
+            }
+        }
     }
 }
