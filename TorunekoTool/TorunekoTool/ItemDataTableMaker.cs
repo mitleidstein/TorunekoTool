@@ -17,11 +17,11 @@ namespace TorunekoTool
             Table = new DataTable();
 
 
-            var column1 = new DataColumn("UNIDENTIFIEDNAME", typeof(string));
-            var column2 = new DataColumn("NAME", typeof(string));
-            var column3 = new DataColumn("MONEYTOBUY", typeof(int));
-            var column4 = new DataColumn("MONEYTOSELL", typeof(int));
-            var column5 = new DataColumn("NOTE", typeof(string));
+            var column1 = new DataColumn("未識別名", typeof(string));
+            var column2 = new DataColumn("アイテム名", typeof(string));
+            var column3 = new DataColumn("買値", typeof(int));
+            var column4 = new DataColumn("売値", typeof(int));
+            var column5 = new DataColumn("説明", typeof(string));
 
             Table.Columns.Add(column1);
             Table.Columns.Add(column2);
