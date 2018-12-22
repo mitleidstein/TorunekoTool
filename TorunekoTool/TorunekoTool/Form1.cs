@@ -443,6 +443,18 @@ namespace TorunekoTool
             {
                 DgvMain.Focus();
             }
+            else if (e.KeyData == Keys.Up || e.KeyData == Keys.Down)
+            {
+                DgvMain.Focus();
+            }
+            else if (e.KeyData == Keys.Right || e.KeyData == Keys.Left)
+            {
+                LsbItem.Focus();
+                if (LsbItem.SelectedIndex == -1)
+                {
+                    LsbItem.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

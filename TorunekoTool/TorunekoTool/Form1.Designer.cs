@@ -59,6 +59,7 @@
             this.DgvMain.Name = "DgvMain";
             this.DgvMain.ReadOnly = true;
             this.DgvMain.RowTemplate.Height = 24;
+            this.DgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvMain.Size = new System.Drawing.Size(971, 526);
             this.DgvMain.TabIndex = 0;
             this.DgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvMain_CellContentClick);
@@ -78,9 +79,9 @@
             this.LblName.AutoSize = true;
             this.LblName.Location = new System.Drawing.Point(1031, 33);
             this.LblName.Name = "LblName";
-            this.LblName.Size = new System.Drawing.Size(206, 18);
+            this.LblName.Size = new System.Drawing.Size(211, 18);
             this.LblName.TabIndex = 2;
-            this.LblName.Text = "アイテム候補 (Lでフォーカス)";
+            this.LblName.Text = "アイテム候補 (→, ←で選択)";
             // 
             // LblMoneyToBuy
             // 
@@ -185,9 +186,9 @@
             this.LblDgv.AutoSize = true;
             this.LblDgv.Location = new System.Drawing.Point(35, 83);
             this.LblDgv.Name = "LblDgv";
-            this.LblDgv.Size = new System.Drawing.Size(170, 18);
+            this.LblDgv.Size = new System.Drawing.Size(173, 18);
             this.LblDgv.TabIndex = 15;
-            this.LblDgv.Text = "識別表 (Gでフォーカス)";
+            this.LblDgv.Text = "識別表 (↑, ↓で選択)";
             // 
             // LblBuy
             // 
