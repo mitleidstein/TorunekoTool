@@ -275,20 +275,10 @@ namespace TorunekoTool
             {
                 item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
             }
-            else if (row.Cells[2].Value != null && int.TryParse(row.Cells[2].Value.ToString(), out int resultBuy))
-            {
-                //すでに買値がグリッドビューに入っていた時
-                item.MoneyToBuy = resultBuy;
-            }
 
             if (TxbMoneyToSell.Text != "")
             {
                 item.MoneyToSell = int.Parse(TxbMoneyToSell.Text);
-            }
-            else if (row.Cells[3].Value != null && int.TryParse(row.Cells[3].Value.ToString(), out int resultSell))
-            {
-                //すでに買値がグリッドビューに入っていた時
-                item.MoneyToSell = resultSell;
             }
 
             TableMakerList[index].SetItem(item);
