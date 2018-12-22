@@ -80,7 +80,7 @@ namespace TorunekoTool
         {
             ItemList = new List<List<DtoItem>>();
 
-            var dao = new DaoItem();
+            DaoItem dao = new DaoItemNoDb();
             dao.OpenConnection();
 
             for (int i = 0; i < comboBox1.Items.Count; i++)
