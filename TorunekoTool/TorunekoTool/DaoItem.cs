@@ -10,16 +10,16 @@ namespace TorunekoTool
 {
     public class DaoItem
     {
-        private OdbcConnection con;
+        protected OdbcConnection con;
 
-        public void OpenConnection() {
+        public virtual void OpenConnection() {
             con = new OdbcConnection();
             con.ConnectionString = 
                 "DSN=PostgreSQL35W;SERVER=localhost;DATABASE=postgres;UID=postgres;PWD=postgresql;PORT=5432;";
             con.Open();
         }
 
-        public List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item) {
+        public virtual List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item) {
             string sql = "SELECT UNIDENTIFIEDNAME " +
                 "FROM UNIDENTIFIEDNAMEMASTER " +
                 $"WHERE TYPENUMBER = {item.TypeNumber} ORDER BY UNIDENTIFIEDNAME";
@@ -43,7 +43,7 @@ namespace TorunekoTool
             return itemList;
         }
 
-        public List<DtoType> GetTypeList()
+        public virtual List<DtoType> GetTypeList()
         {
             string sql = "SELECT TYPENUMBER, TYPENAME, RCOLOR, GCOLOR, BCOLOR FROM TYPEMASTER";
 
@@ -72,7 +72,7 @@ namespace TorunekoTool
             return typeList;
         }
 
-        public List<DtoItem> GetItemList(DtoItem item)
+        public virtual List<DtoItem> GetItemList(DtoItem item)
         {
             object[,] strArr = { 
                 { nameof(item.ItemName), item.ItemName },
@@ -132,7 +132,7 @@ namespace TorunekoTool
             return itemList;
         }
 
-        public List<DtoItem> SearchItem(DtoItem item) {
+        public virtual List<DtoItem> SearchItem(DtoItem item) {
             string sql = "SELECT ITEMNAME, ITEMMASTER.TYPENUMBER, MONEYTOBUY, MONEYTOSELL, NOTE " +
                 "FROM ITEMMASTER JOIN TYPEMASTER ON ITEMMASTER.TYPENUMBER = TYPEMASTER.TYPENUMBER " +
                 $"WHERE ITEMMASTER.TYPENUMBER = {item.TypeNumber}";
@@ -166,11 +166,11 @@ namespace TorunekoTool
             return itemList;
         }
 
-        public int GetTypeNumber() {
+        public virtual int GetTypeNumber() {
             return 0;
         }
         
-        public void CloseConnection() {
+        public virtual void CloseConnection() {
             if (con != null) {
                 con.Close();
             }
