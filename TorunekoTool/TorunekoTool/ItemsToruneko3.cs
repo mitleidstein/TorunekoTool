@@ -75,6 +75,7 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("サーペンティンの指輪", 0));
                     unidentifiedItems.Add(new UnidentifiedItem("カルサイトの指輪", 0));
                     unidentifiedItems.Add(new UnidentifiedItem("メノウの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("リューサイトの指輪", 0));
                     break;
                 case 1:
                     unidentifiedItems.Add(new UnidentifiedItem("ばら色の草", 1));
@@ -169,6 +170,8 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("ワシの巻物", 2));
                     unidentifiedItems.Add(new UnidentifiedItem("キジの巻物", 2));
                     unidentifiedItems.Add(new UnidentifiedItem("トドの巻物", 2));
+                    unidentifiedItems.Add(new UnidentifiedItem("バクの巻物", 2));
+                    unidentifiedItems.Add(new UnidentifiedItem("ヘビの巻物", 2));
                     break;
 
                 case 3:
@@ -216,6 +219,7 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("クワの杖", 3));
                     unidentifiedItems.Add(new UnidentifiedItem("アルミの杖", 3));
                     unidentifiedItems.Add(new UnidentifiedItem("アオダモの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("金の杖", 3));
                     break;
 
                 case 4:
