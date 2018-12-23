@@ -70,7 +70,7 @@ namespace TorunekoTool
                 int index = int.Parse(comboBox1.SelectedValue.ToString());
                 SetListBox(index);
                 DgvMain.DataSource = TableMakerList[index].Table;
-
+                DgvMain.Sort(DgvMain.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
                 LblNote.Text = "アイテム概要";
                 LblBuy.Text = "";
                 LblSell.Text = "";
