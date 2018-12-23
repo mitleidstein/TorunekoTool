@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoItemNoDb.cs" />
+    <Compile Include="ItemsToruneko3.cs" />
     <Compile Include="TypeDataTableMaker.cs" />
     <Compile Include="DaoItem.cs" />
     <Compile Include="ItemDataTableMaker.cs" />

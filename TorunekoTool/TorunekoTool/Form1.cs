@@ -319,53 +319,6 @@ namespace TorunekoTool
             Initialize();
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            //Spaceが押下されたときアイテム種を変更
-            if (e.KeyData == Keys.Space)
-            {
-                if (comboBox1.SelectedIndex == comboBox1.Items.Count - 1)
-                {
-                    comboBox1.SelectedIndex = 0;
-                    SetDgv();
-                }
-                else
-                {
-                    comboBox1.SelectedIndex = comboBox1.SelectedIndex + 1;
-                    SetDgv();
-                }
-
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.D)
-            {
-                ExecuteDecide();
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.R)
-            {
-                ExecuteReset();
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.M)
-            {
-                ExecuteSet();
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.G)
-            {
-                DgvMain.Focus();
-            }
-            else if (e.KeyData == Keys.L)
-            {
-                LsbItem.Focus();
-            }
-            else if (!TxbMoneyToSell.Focused && IsPressedNumberOrBackSpace(e.KeyData))
-            {
-                TxbMoneyToBuy.Focus();
-            }
-        }
-
         private void TxbMoneyToBuy_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (IsPressedNumberOrBackSpace(e.KeyChar))
@@ -439,20 +392,66 @@ namespace TorunekoTool
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            //Spaceが押下されたときアイテム種を変更
             if (e.KeyData == Keys.Space)
             {
+                if (comboBox1.SelectedIndex == comboBox1.Items.Count - 1)
+                {
+                    comboBox1.SelectedIndex = 0;
+                    SetDgv();
+                }
+                else
+                {
+                    comboBox1.SelectedIndex = comboBox1.SelectedIndex + 1;
+                    SetDgv();
+                }
+
+                e.Handled = true;
+            }
+            else if (e.KeyData == Keys.D)
+            {
+                ExecuteDecide();
+                e.Handled = true;
+            }
+            else if (e.KeyData == Keys.R)
+            {
+                ExecuteReset();
+                e.Handled = true;
+            }
+            else if (e.KeyData == Keys.M)
+            {
+                ExecuteSet();
+                e.Handled = true;
+            }
+            else if (!TxbMoneyToSell.Focused && IsPressedNumberOrBackSpace(e.KeyData))
+            {
+                TxbMoneyToBuy.Focus();
+            }
+            else if (e.KeyData == Keys.Space)
+            {
                 DgvMain.Focus();
+                e.Handled = true;
             }
             else if (e.KeyData == Keys.Up || e.KeyData == Keys.Down)
             {
-                DgvMain.Focus();
+                if(! DgvMain.Focused)
+                {
+                    DgvMain.Focus();
+                    e.Handled = true;
+                }
+
             }
             else if (e.KeyData == Keys.Right || e.KeyData == Keys.Left)
             {
-                LsbItem.Focus();
-                if (LsbItem.SelectedIndex == -1)
+                if (! LsbItem.Focused)
                 {
-                    LsbItem.SelectedIndex = 0;
+                    LsbItem.Focus();
+                    if (LsbItem.SelectedIndex == -1)
+                    {
+                        LsbItem.SelectedIndex = 0;
+                    }
+
+                    e.Handled = true;
                 }
             }
         }
