@@ -298,7 +298,7 @@ namespace TorunekoTool
         private void DgvMain_CurrentCellChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = DgvMain.CurrentRow;
-            if (row == null)
+            if (row == null || (row.Cells[2].Value.ToString() == "" && row.Cells[3].Value.ToString() == ""))
             {
                 return;
             }
