@@ -34,16 +34,8 @@ namespace TorunekoTool
             try
             {
                 dao.OpenConnection();
-                UnidentifiedList = dao.GetUnidentifiedItemList(
-                    new DtoItem()
-                    {
-                        TypeNumber = type
-                    });
-                ItemList = dao.GetItemList(
-                    new DtoItem()
-                    {
-                        TypeNumber = type
-                    });
+                UnidentifiedList = dao.GetUnidentifiedItemList(new DtoItem(){TypeNumber = type});
+                ItemList = dao.GetItemList(new DtoItem(){ TypeNumber = type});
             }
             finally
             {
