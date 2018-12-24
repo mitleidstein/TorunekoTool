@@ -306,7 +306,7 @@ namespace TorunekoTool
             TxbMoneyToBuy.Text = row.Cells[2].Value.ToString();
             TxbMoneyToSell.Text = row.Cells[3].Value.ToString();
 
-            SetListBox(DgvMain.CurrentRow);
+            SetListBox(row);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
