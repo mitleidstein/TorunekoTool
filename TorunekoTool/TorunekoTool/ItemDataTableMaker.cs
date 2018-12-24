@@ -56,7 +56,7 @@ namespace TorunekoTool
         private void SetDataTable() {
             Table.Clear();
 
-            if (UnidentifiedList != null && UnidentifiedList.Count != 0)
+            if (UnidentifiedList?.Count != 0)
             {
                 foreach (var item in UnidentifiedList)
                 {
