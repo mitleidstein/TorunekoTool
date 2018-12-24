@@ -302,14 +302,9 @@ namespace TorunekoTool
             {
                 return;
             }
-            if (row.Cells[2] != null) {
-                TxbMoneyToBuy.Text = row.Cells[2].Value.ToString();
-            }
 
-            if (row.Cells[3] != null)
-            {
-                TxbMoneyToSell.Text = row.Cells[3].Value.ToString();
-            }
+            TxbMoneyToBuy.Text = row.Cells[2].Value.ToString();
+            TxbMoneyToSell.Text = row.Cells[3].Value.ToString();
 
             SetListBox(DgvMain.CurrentRow);
         }
