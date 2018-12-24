@@ -62,18 +62,10 @@ namespace TorunekoTool
                 {
                     string itemName = "";
                     string note = "";
-                    if (item.Item != null)
-                    {
-                        itemName = item.Item.ItemName;
-                        note = item.Item.Note;
-                    }
+                    itemName = item.Item?.ItemName;
+                    note = item.Item?.Note;
 
-                    Table.Rows.Add(
-                        new object[]
-                        {
-                            item.UnidentifiedName, itemName, item.MoneyToBuy, item.MoneyToSell, note
-                        });
-
+                    Table.Rows.Add( new object[]{ item.UnidentifiedName, itemName, item.MoneyToBuy, item.MoneyToSell, note });
                 }
             }
         }
