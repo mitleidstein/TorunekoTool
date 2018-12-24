@@ -116,7 +116,7 @@ namespace TorunekoTool
         {
             foreach (var unItem in UnidentifiedList)
             {
-                if (unItem.Item != null && unItem.Item.ItemName == itemName)
+                if (unItem.Item?.ItemName == itemName)
                 {
                     unItem.Item = null;
                     SetDataTable();

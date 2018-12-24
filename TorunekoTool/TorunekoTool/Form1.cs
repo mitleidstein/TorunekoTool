@@ -33,7 +33,11 @@ namespace TorunekoTool
             if (itemName != "")
             {
                 ItemList[typeNum].Add(TableMakerList[typeNum].SearchItem(itemName));
-                TableMakerList[typeNum].ResetItem(itemName);
+                if (TableMakerList[typeNum].ResetItem(itemName))
+                {
+                    DgvMain.CurrentCell = DgvMain.Rows[rowIndex].Cells[0];
+                    SetListBox();
+                };
             }
         }
 
