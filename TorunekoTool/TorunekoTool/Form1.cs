@@ -93,11 +93,7 @@ namespace TorunekoTool
 
             for (int i = 0; i < comboBox1.Items.Count; i++)
             {
-
-                ItemList.Add(dao.GetItemList(new DtoItem()
-                {
-                    TypeNumber = i
-                }));
+                ItemList.Add(dao.GetItemList(new DtoItem() { TypeNumber = i }));
             }
 
             dao.CloseConnection();
