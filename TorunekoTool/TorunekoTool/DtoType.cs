@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TorunekoTool
+﻿namespace TorunekoTool
 {
     public class DtoType
     {
@@ -14,7 +8,9 @@ namespace TorunekoTool
         public int GColor { get; set; }
         public int BColor { get; set; }
 
-        public DtoType() { }
+        public DtoType()
+        {
+        }
 
         public DtoType(int typeNum, string typeName, int rColor, int gColor, int bColor)
         {

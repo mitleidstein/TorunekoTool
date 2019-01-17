@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TorunekoTool
+﻿namespace TorunekoTool
 {
     public class DtoItem
     {
@@ -14,7 +8,9 @@ namespace TorunekoTool
         public int TypeNumber { get; set; }
         public string Note { get; set; }
 
-        public DtoItem() { }
+        public DtoItem()
+        {
+        }
 
         public DtoItem(string itemName, int typeNum, int moneyToBuy, int moneyToSell, string note)
         {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TorunekoTool
 {
@@ -13,9 +9,9 @@ namespace TorunekoTool
         private List<UnidentifiedItem> UnidentifiedList;
         private List<DtoItem> ItemList;
 
-        public void CreateDataTable(int type) {
+        public void CreateDataTable(int type)
+        {
             Table = new DataTable();
-
 
             var column1 = new DataColumn("未識別名", typeof(string));
             var column2 = new DataColumn("アイテム名", typeof(string));
@@ -34,8 +30,8 @@ namespace TorunekoTool
             try
             {
                 dao.OpenConnection();
-                UnidentifiedList = dao.GetUnidentifiedItemList(new DtoItem(){TypeNumber = type});
-                ItemList = dao.GetItemList(new DtoItem(){ TypeNumber = type});
+                UnidentifiedList = dao.GetUnidentifiedItemList(new DtoItem() { TypeNumber = type });
+                ItemList = dao.GetItemList(new DtoItem() { TypeNumber = type });
             }
             finally
             {
@@ -45,7 +41,8 @@ namespace TorunekoTool
             SetDataTable();
         }
 
-        private void SetDataTable() {
+        private void SetDataTable()
+        {
             Table.Clear();
 
             if (UnidentifiedList?.Count != 0)
@@ -57,7 +54,7 @@ namespace TorunekoTool
                     itemName = item.Item?.ItemName;
                     note = item.Item?.Note;
 
-                    Table.Rows.Add( new object[]{ item.UnidentifiedName, itemName, item.MoneyToBuy, item.MoneyToSell, note });
+                    Table.Rows.Add(new object[] { item.UnidentifiedName, itemName, item.MoneyToBuy, item.MoneyToSell, note });
                 }
             }
         }
@@ -66,7 +63,8 @@ namespace TorunekoTool
         {
             foreach (var unidentifiedItem in UnidentifiedList)
             {
-                if (argItem.UnidentifiedName == unidentifiedItem.UnidentifiedName) {
+                if (argItem.UnidentifiedName == unidentifiedItem.UnidentifiedName)
+                {
                     unidentifiedItem.Item = argItem.Item;
                     unidentifiedItem.MoneyToBuy = argItem.MoneyToBuy;
                     unidentifiedItem.MoneyToSell = argItem.MoneyToSell;

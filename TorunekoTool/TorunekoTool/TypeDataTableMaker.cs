@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TorunekoTool
 {
@@ -15,7 +12,7 @@ namespace TorunekoTool
         public DataTable GetDataTable()
         {
             Table = new DataTable();
-            
+
             var column1 = new DataColumn("TYPENUMBER", typeof(int));
             var column2 = new DataColumn("TYPENAME", typeof(string));
 
@@ -43,7 +40,6 @@ namespace TorunekoTool
                         {
                             type.TypeNumber, type.TypeName
                         });
-
                 }
             }
 
@@ -55,7 +51,8 @@ namespace TorunekoTool
         /// </summary>
         /// <param name="typeNumber"></param>
         /// <returns></returns>
-        public DtoType GetType(int typeNumber) {
+        public DtoType GetType(int typeNumber)
+        {
             return TypeList.Single(x => x.TypeNumber == typeNumber);
         }
     }

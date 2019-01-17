@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
 using System.Data.Odbc;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TorunekoTool
 {
@@ -12,34 +8,39 @@ namespace TorunekoTool
     {
         protected OdbcConnection con;
 
-        public virtual void OpenConnection() {
+        public virtual void OpenConnection()
+        {
             con = new OdbcConnection();
-            con.ConnectionString = 
+            con.ConnectionString =
                 "DSN=PostgreSQL35W;SERVER=localhost;DATABASE=postgres;UID=postgres;PWD=postgresql;PORT=5432;";
             con.Open();
         }
 
-        public virtual List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item) {
+        public virtual List<UnidentifiedItem> GetUnidentifiedItemList(DtoItem item)
+        {
             string sql = "SELECT UNIDENTIFIEDNAME " +
                 "FROM UNIDENTIFIEDNAMEMASTER " +
                 $"WHERE TYPENUMBER = {item.TypeNumber} ORDER BY UNIDENTIFIEDNAME";
 
             var itemList = new List<UnidentifiedItem>();
 
-            using (var cmd = new OdbcCommand(sql, con)) {
-                using (var reader = cmd.ExecuteReader()) {
-                    while (reader.Read()) {
+            using (var cmd = new OdbcCommand(sql, con))
+            {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
                         var retItem = new UnidentifiedItem()
                         {
                             UnidentifiedName = reader[0].ToString(),
-                            TypeNumber  = item.TypeNumber
+                            TypeNumber = item.TypeNumber
                         };
 
                         itemList.Add(retItem);
                     }
                 }
             }
-            
+
             return itemList;
         }
 
@@ -74,7 +75,7 @@ namespace TorunekoTool
 
         public virtual List<DtoItem> GetItemList(DtoItem item)
         {
-            object[,] strArr = { 
+            object[,] strArr = {
                 { nameof(item.ItemName), item.ItemName },
                 { nameof(item.TypeNumber), item.TypeNumber },
                 { nameof(item.MoneyToBuy), item.MoneyToBuy },
@@ -86,9 +87,12 @@ namespace TorunekoTool
                 "FROM ITEMMASTER ";
 
             string strWhere = "";
-            for (int i=0; i<strArr.GetUpperBound(0); i++) {
-                if (strArr[i,1] != null) {
-                    if (strWhere == "") {
+            for (int i = 0; i < strArr.GetUpperBound(0); i++)
+            {
+                if (strArr[i, 1] != null)
+                {
+                    if (strWhere == "")
+                    {
                         strWhere += "WHERE ";
                     }
                     else
@@ -96,8 +100,7 @@ namespace TorunekoTool
                         strWhere += "AND ";
                     }
 
-                    strWhere += $"{strArr[i,0]} = {strArr[i, 1]} ";
-
+                    strWhere += $"{strArr[i, 0]} = {strArr[i, 1]} ";
                 }
             }
 
@@ -109,7 +112,6 @@ namespace TorunekoTool
 
             using (var cmd = new OdbcCommand(sql, con))
             {
-            
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -131,12 +133,13 @@ namespace TorunekoTool
 
             return itemList;
         }
-        
-        public virtual void CloseConnection() {
-            if (con != null) {
+
+        public virtual void CloseConnection()
+        {
+            if (con != null)
+            {
                 con.Close();
             }
         }
-
     }
 }

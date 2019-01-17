@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TorunekoTool
 {
@@ -14,14 +11,19 @@ namespace TorunekoTool
             {
                 case 0:
                     return GetItemListRing();
+
                 case 1:
                     return GetItemListKusa();
+
                 case 2:
                     return GetItemListMaki();
+
                 case 3:
                     return GetItemListTsue();
+
                 case 4:
                     return GetItemListTsubo();
+
                 default:
                     throw new Exception("タイプの指定エラー");
             }
@@ -82,6 +84,7 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("アズライトの指輪", 0));
                     unidentifiedItems.Add(new UnidentifiedItem("アパタイトの指輪", 0));
                     break;
+
                 case 1:
                     unidentifiedItems.Add(new UnidentifiedItem("ばら色の草", 1));
                     unidentifiedItems.Add(new UnidentifiedItem("たまむし色の草", 1));
@@ -261,7 +264,6 @@ namespace TorunekoTool
             }
 
             return unidentifiedItems;
-            
         }
 
         public List<DtoType> GetTypeList()
@@ -308,11 +310,11 @@ namespace TorunekoTool
             itemList.Add(new DtoItem("ミニデーモンの指輪", 0, 5000, 2500, "持っているアイテム、Gを盗まれなくなる"));
             itemList.Add(new DtoItem("ルーラの指輪", 0, 7500, 1500, "装備していると5~19行動ごとにワープする"));
             itemList.Add(new DtoItem("ワナあての指輪", 0, 5000, 2500, "投げたアイテム、大砲の弾以外の飛び道具が"));
-            
+
             return itemList;
         }
 
-            private List<DtoItem> GetItemListKusa()
+        private List<DtoItem> GetItemListKusa()
         {
             var itemList = new List<DtoItem>();
             itemList.Add(new DtoItem("胃拡張のたね", 1, 600, 300, "最大満腹度が10増える"));

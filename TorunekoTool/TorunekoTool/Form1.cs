@@ -160,12 +160,10 @@ namespace TorunekoTool
                 TypeNumber = int.Parse(comboBox1.SelectedValue.ToString())
             };
 
-
             if (TxbMoneyToBuy.Text != "")
             {
                 item.MoneyToBuy = int.Parse(TxbMoneyToBuy.Text);
             }
-
 
             if (TxbMoneyToSell.Text != "")
             {
@@ -177,7 +175,6 @@ namespace TorunekoTool
 
         private void DgvMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void TxbMoneyToBuy_TextChanged(object sender, EventArgs e)
@@ -210,7 +207,6 @@ namespace TorunekoTool
                 return;
             }
 
-
             int index = int.Parse(comboBox1.SelectedValue.ToString());
 
             foreach (var item in ItemList[index])
@@ -242,7 +238,6 @@ namespace TorunekoTool
 
                     TableMakerList[index].SetItem(unItem);
                     ItemList[index].Remove(item);
-
 
                     SetListBox();
 
@@ -352,7 +347,7 @@ namespace TorunekoTool
                 Keys.D4, Keys.D5, Keys.D6,
                 Keys.D7, Keys.D8, Keys.D9, Keys.Back
             };
-            
+
             foreach (var k in keyList)
             {
                 if (key == k) {
@@ -434,7 +429,6 @@ namespace TorunekoTool
                     DgvMain.Focus();
                     e.Handled = true;
                 }
-
             }
             else if (e.KeyData == Keys.Right || e.KeyData == Keys.Left)
             {

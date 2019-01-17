@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TorunekoTool
+﻿namespace TorunekoTool
 {
     public class UnidentifiedItem
     {
@@ -14,7 +8,7 @@ namespace TorunekoTool
         public int? MoneyToSell { get; set; }
         public int TypeNumber { get; set; }
 
-        public UnidentifiedItem ()
+        public UnidentifiedItem()
         {
         }
 
