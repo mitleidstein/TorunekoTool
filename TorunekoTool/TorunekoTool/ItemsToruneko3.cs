@@ -83,6 +83,19 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("ロードナイトの指輪", 0));
                     unidentifiedItems.Add(new UnidentifiedItem("アズライトの指輪", 0));
                     unidentifiedItems.Add(new UnidentifiedItem("アパタイトの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("アキシナイトの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("アンバーの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("エメラルドの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("オニキスの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("ガラスの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("コーネルピンの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("サンゴの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("スフィーンの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("ダイヤモンドの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("デマントイドの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("トパーズの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("ヘソナイトの指輪", 0));
+                    unidentifiedItems.Add(new UnidentifiedItem("ルビーの指輪", 0));
                     break;
 
                 case 1:
@@ -180,6 +193,9 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("トドの巻物", 2));
                     unidentifiedItems.Add(new UnidentifiedItem("バクの巻物", 2));
                     unidentifiedItems.Add(new UnidentifiedItem("ヘビの巻物", 2));
+                    unidentifiedItems.Add(new UnidentifiedItem("ゾウの巻物", 2));
+                    unidentifiedItems.Add(new UnidentifiedItem("タヌキの巻物", 2));
+                    unidentifiedItems.Add(new UnidentifiedItem("トラの巻物", 2));
                     break;
 
                 case 3:
@@ -230,6 +246,12 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("金の杖", 3));
                     unidentifiedItems.Add(new UnidentifiedItem("カシの杖", 3));
                     unidentifiedItems.Add(new UnidentifiedItem("ヤシの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("アルダーの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("ウメの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("カエデの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("カキの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("ナナカマドの杖", 3));
+                    unidentifiedItems.Add(new UnidentifiedItem("銀の杖", 3));
                     break;
 
                 case 4:
@@ -260,6 +282,8 @@ namespace TorunekoTool
                     unidentifiedItems.Add(new UnidentifiedItem("でこぼこな壷", 4));
                     unidentifiedItems.Add(new UnidentifiedItem("だえん形の壷", 4));
                     unidentifiedItems.Add(new UnidentifiedItem("ふるめかしい壷", 4));
+                    unidentifiedItems.Add(new UnidentifiedItem("キュートな壺", 4));
+                    unidentifiedItems.Add(new UnidentifiedItem("しかくの壺", 4));
                     break;
             }
 
