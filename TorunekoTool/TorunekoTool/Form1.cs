@@ -73,6 +73,12 @@ namespace TorunekoTool
             {
                 int index = int.Parse(comboBox1.SelectedValue.ToString());
                 SetListBox(index);
+
+                if (TableMakerList is null)
+                {
+                    return;
+                }
+
                 DgvMain.DataSource = TableMakerList[index].Table;
                 DgvMain.Sort(DgvMain.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
                 LblNote.Text = "アイテム概要";
@@ -104,6 +110,11 @@ namespace TorunekoTool
             LsbItem.Items.Clear();
 
             int index = int.Parse(comboBox1.SelectedValue.ToString());
+
+            if (ItemList is null)
+            {
+                return;
+            }
 
             foreach (var retItem in ItemList[index])
             {
