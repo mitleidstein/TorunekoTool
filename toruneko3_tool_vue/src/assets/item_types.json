@@ -1,0 +1,7 @@
+[
+    { "id": 0, "name": "指輪", "red": 242, "green": 216, "blue": 187 },
+    { "id": 1, "name": "草", "red": 168, "green": 239, "blue": 175 },
+    { "id": 2, "name": "巻物", "red": 231, "green": 225, "blue": 143 },
+    { "id": 3, "name": "杖", "red": 156, "green": 167, "blue": 226 },
+    { "id": 4, "name": "壷", "red": 255, "green": 239, "blue": 133 }
+]

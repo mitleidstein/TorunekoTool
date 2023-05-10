@@ -1,18 +1,15 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+<script setup>
+// import { ref } from 'vue'
+import itemTypes from './assets/item_types.json'
 </script>
+
+<template>
+  <div>
+    <select>
+      <option v-for="type in itemTypes" :key="type.id">{{ type.name }}</option>
+    </select>
+  </div>
+</template>
 
 <style>
 #app {
