@@ -31,6 +31,10 @@ const indentifiedItems = computed(() => {
 const buyingPrice = ref(null)
 const sellingPrice = ref(null)
 
+const savedItem = ref(null)
+const savedBuyingPrice = ref(null)
+const savedSellingPrice = ref(null)
+
 function enter() {
   if (!selectedUnidentifiedItem.value) {
     return
@@ -41,6 +45,10 @@ function enter() {
     un.item = selectedItem.value
     un.buyingPrice = buyingPrice.value
     un.sellingPrice = sellingPrice.value
+    savedItem.value = selectedItem.value
+    savedBuyingPrice.value = buyingPrice.value
+    savedSellingPrice.value = sellingPrice.value
+    selectedUnidentifiedItem.value = un
   }
 }
 
@@ -48,7 +56,11 @@ function changedUnidentifiedItem() {
   selectedItem.value = selectedUnidentifiedItem.value.item
   buyingPrice.value = selectedUnidentifiedItem.value.buyingPrice
   sellingPrice.value = selectedUnidentifiedItem.value.sellingPrice
+  savedItem.value = selectedUnidentifiedItem.value.item
+  savedBuyingPrice.value = selectedUnidentifiedItem.value.buyingPrice
+  savedSellingPrice.value = selectedUnidentifiedItem.value.sellingPrice
 }
+
 </script>
 
 <template>
@@ -75,17 +87,39 @@ function changedUnidentifiedItem() {
         {{ item.name }}
       </option>
     </select>
+    <div v-if="savedItem">
+      保存されているアイテム: {{ savedItem.name }}
+    </div>
+    
     <br/>
     買値:
     <input v-model="buyingPrice" placeholder="買値">
+    <div v-if="savedBuyingPrice">
+      保存されている買値: {{ savedBuyingPrice }}
+    </div>
+    
     <br/>
     売値:
     <input v-model="sellingPrice" placeholder="売値">
+    <div v-if="savedSellingPrice">
+      保存されている売値: {{ savedSellingPrice }}
+    </div>
     
     <br/>
     <button @click="enter">
       決定
     </button>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    識別済みアイテム:
+    <select>
+      <option v-for="item in indentifiedItems" :key="item.name" :value="item">
+        {{ item.name }}
+      </option>
+    </select>
   </div>
 </template>
 
