@@ -53,7 +53,7 @@ const unindentifiedItemSetting = ref(1);
 
 function updateIndentifiedItems() {
   indentifiedItems.value = unidentifiedItems.value
-    .filter((t) => t.item)
+    .filter((t) => t.item && t.item_type_id === selectedType.value)
     .map((t) => {
       return t.item;
     })
