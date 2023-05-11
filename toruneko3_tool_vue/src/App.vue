@@ -9,8 +9,10 @@ const selectedUnidentifiedItem = ref(null);
 const selectedItem = ref(null);
 
 const items = ref(itemsCSV);
+
+const unidentifiedItems = ref([]);
 const filteredUnidentifiedItems = computed(() => {
-  let unItems = unidentifiedItemsCSV.filter(
+  let unItems = unidentifiedItems.value.filter(
     (t) => t.item_type_id === selectedType.value
   );
   if (unindentifiedItemSetting.value == 2) {
@@ -50,12 +52,14 @@ const savedSellingPrice = ref(null);
 const unindentifiedItemSetting = ref(1);
 
 function updateIndentifiedItems() {
-  indentifiedItems.value = unidentifiedItemsCSV
+  indentifiedItems.value = unidentifiedItems.value
     .filter((t) => t.item)
     .map((t) => {
       return t.item;
     })
-    .sort();
+    .sort(function (a, b) {
+      return a.name > b.name ? 1 : -1;
+    });
 }
 
 function enter() {
@@ -63,7 +67,7 @@ function enter() {
     return;
   }
 
-  let un = unidentifiedItemsCSV.find(
+  let un = unidentifiedItems.value.find(
     (el) => el.name == selectedUnidentifiedItem.value.name
   );
   if (un) {
@@ -75,6 +79,11 @@ function enter() {
     savedSellingPrice.value = sellingPrice.value;
     selectedUnidentifiedItem.value = un;
     updateIndentifiedItems();
+    
+    // VueのlocalStorageで複雑な値を扱う
+    // https://v2.ja.vuejs.org/v2/cookbook/client-side-storage
+    const parsed = JSON.stringify(unidentifiedItems.value);
+    localStorage.setItem('unidentifiedItems', parsed);
   }
 }
 
@@ -102,7 +111,21 @@ function changedRadioButton() {
   updateIndentifiedItems();
 }
 
+function reset() {
+  localStorage.clear();
+  unidentifiedItems.value = unidentifiedItemsCSV;
+  changedRadioButton()
+}
+
 onMounted(() => {
+  let localData = localStorage.getItem('unidentifiedItems')
+  if (localData) {
+    console.log("load");
+    unidentifiedItems.value = JSON.parse(localData);
+  } else {
+    console.log("new");
+    unidentifiedItems.value = unidentifiedItemsCSV;
+  }
   updateIndentifiedItems();
 });
 </script>
@@ -218,6 +241,9 @@ onMounted(() => {
         <label for="option3">識別されたものを表示</label>
         <br />
       </div>
+
+      <br />
+      <button @click="reset">データをリセット</button>
     </div>
   </div>
 </template>
