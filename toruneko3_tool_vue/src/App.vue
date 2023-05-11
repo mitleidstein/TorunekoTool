@@ -145,25 +145,27 @@ onMounted(() => {
           {{ item.name }}
         </option>
       </select>
-      <div v-if="savedItem">保存されているアイテム: {{ savedItem.name }}</div>
+      <div v-if="savedItem">
+        保存されているアイテム: {{ savedItem.name }}
+      </div>
+      <div v-else><br /></div>
 
-      <br />
       <br />
       買値:
       <input v-model="buyingPrice" placeholder="買値" />
       <div v-if="savedBuyingPrice">
         保存されている買値: {{ savedBuyingPrice }}
       </div>
+      <div v-else><br /></div>
 
-      <br />
       <br />
       売値:
       <input v-model="sellingPrice" placeholder="売値" />
       <div v-if="savedSellingPrice">
         保存されている売値: {{ savedSellingPrice }}
       </div>
+      <div v-else><br /></div>
 
-      <br />
       <br />
       <button @click="enter">
         <div v-if="savedItem || savedBuyingPrice || savedSellingPrice">
