@@ -92,6 +92,7 @@ function changedUnidentifiedItem() {
 }
 
 function changedRadioButton() {
+  selectedUnidentifiedItem.value = null;
   selectedItem.value = null;
   buyingPrice.value = null;
   sellingPrice.value = null;
@@ -114,7 +115,7 @@ onMounted(() => {
     </h3>
     <div class="left_text_centerplace">
       アイテム種別:
-      <select v-model="selectedType">
+      <select v-model="selectedType" @change="changedRadioButton">
         <option v-for="type in itemTypes" :key="type.id" :value="type.id">
           {{ type.name }}
         </option>
