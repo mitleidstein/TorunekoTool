@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import itemTypes from './assets/item_types.json'
 import unidentifiedItemsCSV from './assets/unidentified_items.json'
 import itemsCSV from './assets/items.json'
@@ -23,17 +23,19 @@ const filteredItems = computed(() => {
     )
 })
 
-const indentifiedItems = computed(() => {
-  return unidentifiedItemsCSV
-      .filter((t) => t.item)
-      .map(t => { return t.item })
-})
+const indentifiedItems = ref([])
 const buyingPrice = ref(null)
 const sellingPrice = ref(null)
 
 const savedItem = ref(null)
 const savedBuyingPrice = ref(null)
 const savedSellingPrice = ref(null)
+
+function updateIndentifiedItems() {
+  indentifiedItems.value = unidentifiedItemsCSV
+      .filter((t) => t.item)
+      .map(t => { return t.item })
+}
 
 function enter() {
   if (!selectedUnidentifiedItem.value) {
@@ -49,6 +51,7 @@ function enter() {
     savedBuyingPrice.value = buyingPrice.value
     savedSellingPrice.value = sellingPrice.value
     selectedUnidentifiedItem.value = un
+    updateIndentifiedItems()
   }
 }
 
@@ -59,12 +62,22 @@ function changedUnidentifiedItem() {
   savedItem.value = selectedUnidentifiedItem.value.item
   savedBuyingPrice.value = selectedUnidentifiedItem.value.buyingPrice
   savedSellingPrice.value = selectedUnidentifiedItem.value.sellingPrice
+  updateIndentifiedItems()
 }
+
+onMounted(() => {
+  updateIndentifiedItems()
+})
 
 </script>
 
 <template>
   <div>
+    <h3>
+      トルネコの大冒険3<br/>
+      アイテム識別ツール
+    </h3>
+
     アイテム種別:
     <select v-model="selectedType">
       <option v-for="type in itemTypes" :key="type.id" :value="type.id">
@@ -107,7 +120,12 @@ function changedUnidentifiedItem() {
     
     <br/>
     <button @click="enter">
-      決定
+      <div v-if="savedItem || savedBuyingPrice || savedSellingPrice">
+        変更
+      </div>
+      <div v-else>
+        決定
+      </div>
     </button>
 
     <br/>
