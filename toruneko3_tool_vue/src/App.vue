@@ -206,13 +206,14 @@ onMounted(() => {
       <br />
       識別済みアイテム:
       <br />
-      <select multiple>
-        <option v-for="item in indentifiedItems" :key="item.name" :value="item">
-          {{ item.name }}
-        </option>
-      </select>
+      <div class="box">
+        <ul>
+          <li v-for="item in indentifiedItems" :key="item.name">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
 
-      <br />
       <br />
       <br />
       <div>
@@ -298,6 +299,12 @@ onMounted(() => {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.box {
+  height: 100px; /* 横幅を200pxに指定 */
+  border: 1px solid #000; /* わかりやすくボーダーを引く */
+  overflow-y: scroll; /* 縦方向にスクロール可能にする */
 }
 
 .left_title {
