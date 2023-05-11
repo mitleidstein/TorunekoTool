@@ -10,25 +10,33 @@ const selectedItem = ref(null);
 
 const items = ref(itemsCSV);
 const filteredUnidentifiedItems = computed(() => {
-  let unItems = unidentifiedItemsCSV;
+  let unItems = unidentifiedItemsCSV.filter(
+    (t) => t.item_type_id === selectedType.value
+  );
   if (unindentifiedItemSetting.value == 2) {
     unItems = unItems.filter((t) => !t.item);
   } else if (unindentifiedItemSetting.value == 3) {
     unItems = unItems.filter((t) => t.item);
   }
 
-  return unItems.filter((t) => t.item_type_id === selectedType.value);
+  return unItems.sort(function (a, b) {
+    return a.name > b.name ? 1 : -1;
+  });
 });
 
 const filteredItems = computed(() => {
-  return items.value.filter(
-    (t) =>
-      t.item_type_id === selectedType.value &&
-      (!buyingPrice.value || t.buying_price == buyingPrice.value) &&
-      (!sellingPrice.value || t.selling_price == sellingPrice.value) &&
-      Object.keys(indentifiedItems.value.filter((el) => t.name == el.name))
-        .length == 0
-  );
+  return items.value
+    .filter(
+      (t) =>
+        t.item_type_id === selectedType.value &&
+        (!buyingPrice.value || t.buying_price == buyingPrice.value) &&
+        (!sellingPrice.value || t.selling_price == sellingPrice.value) &&
+        Object.keys(indentifiedItems.value.filter((el) => t.name == el.name))
+          .length == 0
+    )
+    .sort(function (a, b) {
+      return a.name > b.name ? 1 : -1;
+    });
 });
 
 const indentifiedItems = ref([]);
@@ -46,7 +54,8 @@ function updateIndentifiedItems() {
     .filter((t) => t.item)
     .map((t) => {
       return t.item;
-    });
+    })
+    .sort();
 }
 
 function enter() {
@@ -223,7 +232,7 @@ onMounted(() => {
 
 .left_text_centerplace {
   text-align: left;
-  width: fit-content;
+  width: 90%;
   margin: 0 auto;
 }
 </style>
