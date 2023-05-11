@@ -205,7 +205,8 @@ onMounted(() => {
       <br />
       <br />
       識別済みアイテム:
-      <select>
+      <br />
+      <select multiple>
         <option v-for="item in indentifiedItems" :key="item.name" :value="item">
           {{ item.name }}
         </option>
