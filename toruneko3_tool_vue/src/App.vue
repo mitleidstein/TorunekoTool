@@ -109,10 +109,11 @@ onMounted(() => {
 
 <template>
   <div>
-    <h3>
+    <h3 class="left_title">
       トルネコの大冒険3<br />
       アイテム識別ツール
     </h3>
+    <br />
     <div class="left_text_centerplace">
       アイテム種別:
       <select v-model="selectedType" @change="changedRadioButton">
@@ -146,9 +147,7 @@ onMounted(() => {
           {{ item.name }}
         </option>
       </select>
-      <div v-if="savedItem">
-        保存されているアイテム: {{ savedItem.name }}
-      </div>
+      <div v-if="savedItem">保存されているアイテム: {{ savedItem.name }}</div>
       <div v-else><br /></div>
 
       <br />
@@ -233,9 +232,25 @@ onMounted(() => {
   margin-top: 60px;
 }
 
+.left_title {
+  text-align: center;
+  margin: 0 auto;
+}
 .left_text_centerplace {
   text-align: left;
   width: 90%;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 640px) {
+  .left_title {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .left_text_centerplace {
+    text-align: left;
+    width: fit-content;
+    margin: 0 auto;
+  }
 }
 </style>
