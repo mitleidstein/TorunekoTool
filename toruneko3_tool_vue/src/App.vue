@@ -250,43 +250,14 @@ onMounted(() => {
 
       <br />
       <button @click="reset">データをリセット</button>
+      <br />
+      <br />
 
-      <!--タグはここから-->
-      <br />
-      <br />
-      <table border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="center">
-            <a href="http://www.rays-counter.com/"
-              ><img
-                src="http://www.rays-counter.com/d1265_f8_022/645cc3b55e50a/"
-                alt="アクセスカウンター"
-                border="0"
-            /></a>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="font-size: xx-small">
-            <img
-              src="http://www.rays-counter.com/images/counter_01.gif"
-              border="0"
-            /><img
-              src="http://www.rays-counter.com/images/counter_02.gif"
-              border="0"
-            /><img
-              src="http://www.rays-counter.com/images/counter_03.gif"
-              border="0"
-            /><img
-              src="http://www.rays-counter.com/images/counter_04.gif"
-              border="0"
-            /><img
-              src="http://www.rays-counter.com/images/counter_05.gif"
-              border="0"
-            />
-          </td>
-        </tr>
-      </table>
-      <!--ここまで-->
+      <a href="https://www.free-counter.jp/"
+        ><img
+          src="https://www.f-counter.net/j/62/1683802457/"
+          alt="アクセスカウンター"
+      /></a>
     </div>
   </div>
 </template>
