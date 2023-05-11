@@ -79,11 +79,11 @@ function enter() {
     savedSellingPrice.value = sellingPrice.value;
     selectedUnidentifiedItem.value = un;
     updateIndentifiedItems();
-    
+
     // VueのlocalStorageで複雑な値を扱う
     // https://v2.ja.vuejs.org/v2/cookbook/client-side-storage
     const parsed = JSON.stringify(unidentifiedItems.value);
-    localStorage.setItem('unidentifiedItems', parsed);
+    localStorage.setItem("unidentifiedItems", parsed);
   }
 }
 
@@ -112,13 +112,17 @@ function changedRadioButton() {
 }
 
 function reset() {
-  localStorage.clear();
-  unidentifiedItems.value = unidentifiedItemsCSV;
-  changedRadioButton()
+  var result = window.confirm("データをリセットします。よろしいですか？");
+  if (result) {
+    localStorage.clear();
+    unidentifiedItems.value = unidentifiedItemsCSV;
+    changedRadioButton();
+    console.log("reset");
+  }
 }
 
 onMounted(() => {
-  let localData = localStorage.getItem('unidentifiedItems')
+  let localData = localStorage.getItem("unidentifiedItems");
   if (localData) {
     console.log("load");
     unidentifiedItems.value = JSON.parse(localData);
