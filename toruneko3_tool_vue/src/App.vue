@@ -3,10 +3,14 @@ import { ref, computed, onMounted } from "vue";
 import itemTypes from "./assets/item_types.json";
 import unidentifiedItemsCSV from "./assets/unidentified_items.json";
 import itemsCSV from "./assets/items.json";
+import monstersCSV from "./assets/monsters.json";
+import mainCharacterLevelsCSV from "./assets/main_charactor_levels.json";
 
 const selectedType = ref(0);
 const selectedUnidentifiedItem = ref(null);
 const selectedItem = ref(null);
+const selectedMonster = ref(null);
+const selectedMainCharacterLevel = ref(null);
 
 const items = ref(itemsCSV);
 
@@ -119,6 +123,18 @@ function reset() {
     changedRadioButton();
     console.log("reset");
   }
+}
+
+function damage() {
+  //let basicOffense = selectedMainCharacterLevel.value.offense *((8 / 2) + 8) * 0.0625;
+  //let basicDeffense = (8155591/8388608)^(selectedMonster.value.defense);
+  let basicOffense = selectedMainCharacterLevel.value.offense *((8 / 2) + 8) * 0.0625;
+  let basicDeffense = ((35)^(selectedMonster.value.defense)) / ((36)^(selectedMonster.value.defense));
+  let basicDamage = basicOffense * basicDeffense;
+  // private void DamageEquation()
+  let minDamage = Math.round(basicDamage * 7 / 8);
+  let maxDamage = Math.round(basicDamage * 9 / 8);
+  return `${minDamage}～${maxDamage}`;
 }
 
 onMounted(() => {
@@ -248,6 +264,42 @@ onMounted(() => {
         <br />
       </div>
 
+      
+      <br />
+      モンスター:
+      <br />
+      <select v-model="selectedMonster" @change="changedRadioButton">
+        <option v-for="monster in monstersCSV" :key="monster.name" :value="monster">
+          {{ monster.name }}
+        </option>
+      </select>
+      <br />
+      <div v-if="selectedMonster!=null">
+        {{ selectedMonster.name }}<br />
+        HP: {{ selectedMonster.hp }}<br />
+        攻撃力: {{ selectedMonster.offense }}<br />
+        守備力: {{ selectedMonster.defense }}<br />
+        経験値: {{ selectedMonster.experience }}
+      </div>
+
+      <br />
+      主人公のレベル:
+      <br />
+      <select v-model="selectedMainCharacterLevel" @change="changedRadioButton">
+        <option v-for="mainCharacterLevel in mainCharacterLevelsCSV" :key="mainCharacterLevel.level" :value="mainCharacterLevel">
+          {{ mainCharacterLevel.level }}
+        </option>
+      </select>
+      <div v-if="selectedMainCharacterLevel!=null">
+        主人公の攻撃力: {{ selectedMainCharacterLevel.offense }}
+      </div>
+
+      <div v-if="selectedMonster!=null && selectedMainCharacterLevel!=null">
+        与えるダメージ {{ damage() }}
+      </div>
+      
+
+      <br />
       <br />
       <button @click="reset">データをリセット</button>
       <br />
