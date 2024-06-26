@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <img src={logo} className="App-logo" alt="logo"/>
+        <p>React学習</p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://ja.react.dev/learn"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Reactクイックスタート
         </a>
+        <br />
+        <MyComponent />
+        <br />
+        野球チーム (Listに対してmapを使って出力)
+        {listItems}
       </header>
     </div>
   );
 }
+
+function MyComponent() {
+  return <div class="font-size-18">コンポーネント名は大文字で始まる</div>;
+}
+
+const teams = [
+  { title: "読売ジャイアンツ", id: 1 },
+  { title: "東京ヤクルトスワローズ", id: 2 },
+  { title: "横浜DeNAベイスターズ", id: 3 },
+  { title: "中日ドラゴンズ", id: 4 },
+  { title: "阪神タイガース", id: 5 },
+  { title: "広島東洋カープ", id: 6 },
+];
+
+const listItems = teams.map((team) => (
+  <a
+    class="team"
+    href={"https://baseball.yahoo.co.jp/npb/teams/" + team.id + "/top"}
+    target="_blank"
+  >
+    {team.title}
+  </a>
+));
 
 export default App;
