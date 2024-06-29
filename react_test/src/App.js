@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
+        <img src={logo} className="App-logo" alt="logo" />
         <p>React学習</p>
         <a
           className="App-link"
@@ -15,12 +15,13 @@ function App() {
         >
           Reactクイックスタート
         </a>
-        <br />
-        <MyComponent />
-        <br />
-        野球チーム (Listに対してmapを使って出力)
-        {listItems}
       </header>
+      <br />
+      <MyComponent />
+      <br />
+      野球チーム (Listに対してmapを使って出力)
+      {listItems}
+      <button onClick={handleClick}>onClickイベント</button>
     </div>
   );
 }
@@ -47,5 +48,9 @@ const listItems = teams.map((team) => (
     {team.title}
   </a>
 ));
+
+function handleClick() {
+  alert("You clicked me!");
+}
 
 export default App;
