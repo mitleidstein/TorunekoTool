@@ -15,13 +15,13 @@ function App() {
         >
           Reactクイックスタート
         </a>
+        <br />
+        <MyComponent />
+        <br />
+        野球チーム (Listに対してmapを使って出力)
+        {listItems}
+        <button onClick={handleClick}>onClickイベント</button>
       </header>
-      <br />
-      <MyComponent />
-      <br />
-      野球チーム (Listに対してmapを使って出力)
-      {listItems}
-      <button onClick={handleClick}>onClickイベント</button>
     </div>
   );
 }
